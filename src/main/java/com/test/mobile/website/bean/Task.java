@@ -2,7 +2,7 @@ package com.test.mobile.website.bean;
 
 public class Task {
 
-	private int id;
+	private Integer id;
 	
 	private String taskName;
 	
@@ -16,15 +16,9 @@ public class Task {
 	
 	private String status;
 	
-	private int userId;
+	private Integer userId;
 
-	public int getId() {
-		return id;
-	}
 
-	public void setId(int id) {
-		this.id = id;
-	}
 
 	public String getTaskName() {
 		return taskName;
@@ -74,11 +68,21 @@ public class Task {
 		this.status = status;
 	}
 
-	public int getUserId() {
+
+
+	public Integer getId() {
+		return id;
+	}
+
+	public void setId(Integer id) {
+		this.id = id;
+	}
+
+	public Integer getUserId() {
 		return userId;
 	}
 
-	public void setUserId(int userId) {
+	public void setUserId(Integer userId) {
 		this.userId = userId;
 	}
 
@@ -88,8 +92,14 @@ public class Task {
 				+ ", url=" + url + ", email=" + email + ", status=" + status + ", userId=" + userId + "]";
 	}
 
-	public Task(int id, String taskName, String serverIp, String domainName, String url, String email, String status,
-			int userId) {
+	
+	public Task() {
+		super();
+		// TODO Auto-generated constructor stub
+	}
+
+	public Task(Integer id, String taskName, String serverIp, String domainName, String url, String email,
+			String status, Integer userId) {
 		super();
 		this.id = id;
 		this.taskName = taskName;
@@ -99,11 +109,6 @@ public class Task {
 		this.email = email;
 		this.status = status;
 		this.userId = userId;
-	}
-
-	public Task() {
-		super();
-		// TODO Auto-generated constructor stub
 	}
 	
 	

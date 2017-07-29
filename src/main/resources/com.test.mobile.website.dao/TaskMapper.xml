@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.test.mobile.website.dao.TaskMapper">
+	
+	<!-- public void add(Task task); -->
+	<insert id="add" parameterType="com.test.mobile.website.bean.Task">
+		insert into task(task_name,server_ip,domain_name,url,email,status,user_id)
+		 values(taskName,serverIp,domainName,url,email,status,userId)
+	</insert>
+	
+	<select id="add" resultType="com.test.mobile.website.bean.Task">
+		
+	</select>
+</mapper>

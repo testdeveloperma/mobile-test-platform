@@ -32,7 +32,7 @@
                 	描述：导航头部
                 -->
 				<div class="navbar-header">
-					<a class="navbar-brand" href="index.html">
+					<a class="navbar-brand" href="index.jsp">
 						<img src="img/logo.png" style="width: 40px; height: 20px; display: inline-block;" /> 艺龙旅行网
 					</a>
 					<button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#top-navbar">
@@ -46,10 +46,10 @@
 				<div class="collapse navbar-collapse" id="top-bar">
 					<ul class="nav navbar-nav">
 						<li class="active">
-							<a>待办<span class="badge">13</span><span class="sr-only">(当前选中)</span></a>
+							<a href="addPage">任务提测<span class="sr-only">(当前选中)</span></a>
 						</li>
 						<li class="dropdown">
-							<a class="dropdown-toggle" data-toggle="dropdown">登记
+							<a class="dropdown-toggle" data-toggle="dropdown">任务列表
 								<span class="caret"></span>
 							</a>
 							<ul class="dropdown-menu">
@@ -67,7 +67,7 @@
 							</ul>
 						</li>
 						<li>
-							<a href="#">通知</a>
+							<a href="#">我的任务</a>
 						</li>
 						<li class="dropdown">
 							<a class="dropdown-toggle" data-toggle="dropdown">检索
@@ -111,13 +111,13 @@
 			</div>
 		</nav>
 		
-		<div class="modal fade" id="repwdModel">
+		<!-- <div class="modal fade" id="repwdModel">
 			<div class="modal-dialog">
 				<div class="modal-content">
 					
 				</div>
 			</div>
-		</div>
+		</div> -->
 	</body>
 
 </html>

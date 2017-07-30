@@ -1,5 +1,7 @@
 package com.test.mobile.website.service;
 
+import java.util.List;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -14,5 +16,15 @@ public class TaskService {
 	
 	public void addTask(Task task){
 		taskMapper.add(task);
+	}
+
+	public List<Task> getTaskByUserId(Integer userId) {
+		
+		return taskMapper.getTaskByUserId(userId);
+		
+	}
+	
+	public List<Task> getAllTask(){
+		return taskMapper.getAll();
 	}
 }

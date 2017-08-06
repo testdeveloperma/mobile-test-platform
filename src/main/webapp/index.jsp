@@ -33,7 +33,7 @@
                 -->
 				<div class="navbar-header">
 					<a class="navbar-brand" href="index.jsp">
-						<img src="img/logo.png" style="width: 40px; height: 20px; display: inline-block;" /> 艺龙旅行网
+						<img src="img/elonglogo.png" style="width: 80px; height: 20px; display: inline-block;" /> 艺龙旅行网
 					</a>
 					<button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#top-navbar">
 						<span class="sr-only">切换菜单</span>

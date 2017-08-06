@@ -5,6 +5,7 @@ import java.util.List;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import com.github.pagehelper.PageHelper;
 import com.test.mobile.website.bean.Task;
 import com.test.mobile.website.dao.TaskMapper;
 
@@ -24,7 +25,13 @@ public class TaskService {
 		
 	}
 	
-	public List<Task> getAllTask(){
+	public List<Task> getAllTask(Integer page){
+		if(page != null){
+			PageHelper.startPage(page, 1);
+		}else{
+			PageHelper.startPage(1, 1);
+		}
+		
 		return taskMapper.getAll();
 	}
 }

@@ -7,7 +7,9 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.jdbc.core.metadata.GenericTableMetaDataProvider;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestParam;
 
+import com.github.pagehelper.PageInfo;
 import com.test.mobile.website.bean.Task;
 import com.test.mobile.website.service.TaskService;
 
@@ -38,10 +40,13 @@ public class TaskController {
 		return "listme";
 	}
 	
-	@RequestMapping("listall")
-	public String listTask(Map<String,Object> map){
-		List<Task> task = taskService.getAllTask();
+	@RequestMapping(value="listall")
+	public String listTask(Map<String,Object> map,@RequestParam(defaultValue="1",required=false,name="page") Integer page){
+		List<Task> task = taskService.getAllTask(page);
+		PageInfo<Task> p = new PageInfo<Task>(task);
+		System.out.println(p);
 		map.put("tasks", task);
+		map.put("page", p);
 		return "listall";
 	}
 	

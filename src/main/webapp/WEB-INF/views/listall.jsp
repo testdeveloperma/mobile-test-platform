@@ -8,6 +8,11 @@
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 <title>Insert title here</title>
 </head>
+<script type="text/javascript">
+	$(function(){
+		
+	})
+</script>
 <body>
 	<jsp:include page="../../index.jsp"></jsp:include>
 	<br>
@@ -37,6 +42,75 @@
 			</tr>
 		</c:forEach>
 	</table>
+	<nav aria-label="Page navigation">
+  <ul class="pagination">
+  	<c:if test="${requestScope.page.pageNum ==1}">
+  	    <li class="disabled"><a href="listall?page=1">首页</a></li>
+  	</c:if>
+  	<c:if test="${requestScope.page.pageNum !=1}">
+  	    <li><a href="listall?page=1">首页</a></li>
+  	</c:if>
+  	<c:if test="${requestScope.page.hasPreviousPage }">
+  		<li>
+      <a href="listall?page=${requestScope.page.prePage }" aria-label="Previous">
+        <span aria-hidden="true">&laquo;</span>
+      </a>
+    </li>
+  	</c:if>
+  	<c:if test="${!requestScope.page.hasPreviousPage }">
+	  	<li class="disabled">
+	      <a href="listall?page=${requestScope.page.prePage }" aria-label="Previous">
+	        <span aria-hidden="true">&laquo;</span>
+	      </a>
+	    </li>
+  	</c:if>
+    
+    <c:if test="${requestScope.page.pageNum < 3}">
+    <c:forEach var="i" begin="1" end="${requestScope.page.pages > 5 ? 5 : requestScope.page.pages}">
+    	<c:if test="${requestScope.page.pageNum == i}">
+    		<li class="active"><a href="listall?page=${i}">${i }</a></li>
+    	</c:if>
+    	<c:if test="${requestScope.page.pageNum != i}">
+    		<li><a href="listall?page=${i}">${i }</a></li>
+    	</c:if>
+    	
+    <!-- ${requestScope.page.pages > 5 ? 5 : 3} -->
+    </c:forEach>
+    </c:if>
+    <c:if test="${requestScope.page.pageNum >= 3}">
+    	<li><a href="listall?page=${requestScope.page.pageNum -2}">${requestScope.page.pageNum -2}</a></li>
+    	<li><a href="listall?page=${requestScope.page.pageNum -1}">${requestScope.page.pageNum -1}</a></li>
+   		<li class="active"><a href="listall?page=${requestScope.page.pageNum }">${requestScope.page.pageNum }</a></li>
+    	<c:forEach var="i" begin="1" end="${requestScope.page.pages - page.pageNum > 2 ? 2 : page.pages - page.pageNum}">
+    		<li><a href="listall?page=${requestScope.page.pageNum + i }">${requestScope.page.pageNum + i }</a></li>
+    	</c:forEach>
+    </c:if>
+    
+ 	
+  	<c:if test="${requestScope.page.hasNextPage }">
+  		<li>
+      <a href="listall?page=${requestScope.page.nextPage }" aria-label="Next">
+        <span aria-hidden="true">&raquo;</span>
+      </a>
+    </li>
+    </li>
+  	</c:if>
+  	<c:if test="${!requestScope.page.hasNextPage }">
+	  	<li class="disabled">
+	      <a href="listall?page=${requestScope.page.nextPage }" aria-label="Next">
+	        <span aria-hidden="true">&raquo;</span>
+	      </a>
+	    </li>
+  	</c:if>
+  	
+  	<c:if test="${requestScope.page.isLastPage}">
+     <li class="disabled"><a href="listall?page=${requestScope.page.pages}">末页</a></li>	
+  	</c:if>
+  	<c:if test="${!requestScope.page.isLastPage}">
+     <li><a href="listall?page=${requestScope.page.pages}">末页</a></li>	
+  	</c:if>
+  </ul>
+</nav>
 	
 </body>
 </html>

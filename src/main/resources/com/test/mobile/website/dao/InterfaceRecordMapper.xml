@@ -2,12 +2,9 @@
 <!DOCTYPE mapper
 PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
-<mapper namespace="com.test.mobile.website.dao.TaskMapper">
+<mapper namespace="com.test.mobile.website.dao.InterfaceRecordMapper">
 	
-	<!-- public void add(Task task); 
-	public List<Task> getTaskByUserId(Integer userId);
-	
-	public List<Task> getAll();
+	<!--	public List<InterfaceRecord>  getRecord(Integer page);
 	-->
 	<!-- <insert id="add" parameterType="com.test.mobile.website.bean.Task">
 		insert into task(task_name,server_ip,domain_name,url,email,status,user_id)
@@ -18,7 +15,7 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 		select id,task_name,server_ip,domain_name,url,email,status,user_id from task where user_id=#{userId} order by id
 	</select> -->
 	
-	<select id="getAll"  resultType="com.test.mobile.website.bean.Task">
-		select id,task_name,server_ip,domain_name,url,email,status,user_id from task order by id desc
+	<select id="getRecord"  resultType="com.test.mobile.website.bean.InterfaceRecord">
+		select id,url,method,request_param,request_header,response_result,response_code,response_header from http_data order by id desc
 	</select>
 </mapper>

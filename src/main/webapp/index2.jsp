@@ -66,6 +66,89 @@
 </head>
 
 <body>
+	<div class=""></div>
+	<div class="row">
+	<nav class="navbar navbar-inverse navbar-fixed-top" role="navigation">
+			<div class="container">
+				<!--
+                	描述：导航头部
+                -->
+				<div class="navbar-header">
+					<a class="navbar-brand" href="index.jsp">
+						<img src="img/elonglogo.png" style="width: 80px; height: 20px; display: inline-block;" /> 艺龙旅行网
+					</a>
+					<button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#top-navbar">
+						<span class="sr-only">切换菜单</span>
+						<span class="icon-bar"></span>
+						<span class="icon-bar"></span>
+						<span class="icon-bar"></span>
+					</button>
+				</div>
+				<!--主菜单部分-->
+				<div class="collapse navbar-collapse" id="top-bar">
+					<ul class="nav navbar-nav">
+						<li class="active">
+							<a href="addPage">任务提测<span class="sr-only">(当前选中)</span></a>
+						</li>
+						<li class="dropdown">
+							<a class="dropdown-toggle" data-toggle="dropdown">任务列表
+								<span class="caret"></span>
+							</a>
+							<ul class="dropdown-menu">
+								<li>
+									<a href="#">员工入职</a>
+								</li>
+								<li class="divider"></li>
+								<li>
+									<a href="#">设备资产</a>
+								</li>
+								<li class="divider"></li>
+								<li>
+									<a href="#">请假</a>
+								</li>
+							</ul>
+						</li>
+						<li>
+							<a href="#">我的任务</a>
+						</li>
+						<li class="dropdown">
+							<a class="dropdown-toggle" data-toggle="dropdown">检索
+								<span class="caret"></span>
+							</a>
+							<ul class="dropdown-menu">
+								<li>
+									<a href="#">通知</a>
+								</li>
+								<li class="divider"></li>
+								<li>
+									<a href="#">审批</a>
+								</li>
+								<li class="divider"></li>
+								<li>
+									<a href="#">anyoneelse</a>
+								</li>
+							</ul>
+						</li>
+						
+					</ul>
+					
+					<ul class="nav navbar-nav navbar-right">
+						<li><a href="#">退出</a></li>
+						<li>
+							<a href="#" class="dropdown-toggle" data-toggle="dropdown">管理员</a>
+							<ul class="dropdown-menu">
+								<li><a href="#">账户信息</a></li>
+								<li><a href="repwd.html" data-toggle="modal" data-target="#repwdModel">修改口令</a></li>
+							</ul>
+						</li>
+					</ul>
+					
+					
+				</div>
+			</div>
+		</nav>
+	</div>
+	<br/><br/><br/>
 	<div class="row">
 		<div class="col-md-2">
 			<div class="panel-group table-responsive" role="tablist">
@@ -88,7 +171,12 @@
 									<span class="glyphicon glyphicon-triangle-right"></span>mock数据
 								</button>
 							</li>
-							
+							<li class="list-group-item">
+								<!-- 利用data-target指定URL -->
+								<button class="menu-item-left" data-target="test2.html" onclick="menuClick('getInterfaceRecord')">
+									<span class="glyphicon glyphicon-triangle-right"></span>请求测试结果
+								</button>
+							</li>
 							
 							
 						</ul>
@@ -133,6 +221,7 @@
 		</div>
 		<div class="col-md-10" id="current">内容</div>
 	</div>
+	
 	<!-- jQuery1.11.3 (necessary for Bo otstrap's JavaScript plugins) -->
 <!-- 	<script src="js/jquery-1.11.3.min.js "></script>
  -->	<!-- Include all compiled plugins (below), or include individual files as needed -->
@@ -149,8 +238,7 @@
 	           //这是给div的一个初始页面
 /* 	      $("#current").load('${pageContext.request.contextPath}/getInterfaceRecord');
  */		});
-		
-	       
+			       
 	        var menuClick = function(menuUrl) {
 	           
 	            $("#current").load('${pageContext.request.contextPath}/getInterfaceRecord');

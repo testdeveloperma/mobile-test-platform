@@ -49,12 +49,12 @@
 							<a href="addPage">任务提测<span class="sr-only">(当前选中)</span></a>
 						</li>
 						<li class="dropdown">
-							<a class="dropdown-toggle" data-toggle="dropdown">任务列表
+							<a  class="dropdown-toggle" data-toggle="dropdown">任务列表
 								<span class="caret"></span>
 							</a>
 							<ul class="dropdown-menu">
 								<li>
-									<a href="#">员工入职</a>
+									<a href="listall">员工入职</a>
 								</li>
 								<li class="divider"></li>
 								<li>
@@ -75,7 +75,7 @@
 							</a>
 							<ul class="dropdown-menu">
 								<li>
-									<a href="#">通知</a>
+									<a href="listall">任务</a>
 								</li>
 								<li class="divider"></li>
 								<li>

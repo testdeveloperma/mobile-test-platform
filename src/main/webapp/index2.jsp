@@ -158,7 +158,7 @@
 						data-toggle="collapse" data-target="#collapseListGroup1"
 						role="tab">
 						<h4 class="panel-title">
-							客户端接口自动化 <span class="glyphicon glyphicon-chevron-up right"></span>
+							客户端自动化 <span class="glyphicon glyphicon-chevron-up right"></span>
 						</h4>
 					</div>
 					<!-- .panel-collapse和.collapse标明折叠元素 .in表示要显示出来 -->

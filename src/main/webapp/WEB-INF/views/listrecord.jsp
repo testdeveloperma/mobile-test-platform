@@ -11,29 +11,43 @@
 <%-- 	<jsp:include page="../../index2.jsp"></jsp:include>
  --%>
 	<table class="table table-hover table-bordered">
+		 <colgroup>
+         	<col style="width:5%">
+         	<col style="width:15%">
+         	<col style="width:5%">
+         	<col style="width:15%">
+         	<col style="width:10%">
+         	<col style="width:10%">
+         	<col style="width:10%">
+         	<col style="width:30%">
+         	</colgroup>
+		<thead>
 		<tr class="">
 			<th>case_id</th>
 			<th>请求url</th>
 			<th>请求方式</th>
 			<th>请求参数</th>
-			<!-- <th>请求header</th>
+			<th>请求header</th>
 			<th>响应body</th>
 			<th>响应状态码  </th>
-			<th>响应header</th> -->
+			<th>响应header</th> 
 		</tr>
+		</thead>
+		<tbody>
 		<c:forEach var="record" items="${requestScope.records }">
 			<tr>
-				<td>${record.id }</td>
-				<td>${record.url }</td>
+				<td style="width:200px">${record.id }</td>
+				<td style="height:200x">${record.url }</td>
 				<td>${record.method }</td>
 				<td>${record.requestParam }</td>
-			<%-- 	<td>${record.requestHeader }</td>
+				<td>${record.requestHeader }</td>
 				<td>${record.responseResult }</td>
 				<td>${record.responseCode }</td>
-				<td>${record.responseHeader }</td> --%>
+				<td>${record.responseHeader }</td> 
 <!-- 				<td><a href="">查看</a></td>
  -->			</tr>
 		</c:forEach>
+		</tbody>
 	</table>
 	<nav aria-label="Page navigation">
 	<ul class="pagination">

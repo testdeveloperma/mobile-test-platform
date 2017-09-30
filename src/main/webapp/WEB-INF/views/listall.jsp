@@ -21,6 +21,16 @@
 	<br>
 
 	<table class="table table-hover table-bordered">
+		 <colgroup>
+         	<col style="width:5%">
+         	<col style="width:15%">
+         	<col style="width:5%">
+         	<col style="width:15%">
+         	<col style="width:10%">
+         	<col style="width:25%">
+         	<col style="width:10%">
+         	<col style="width:15%">
+         	</colgroup>
 		<tr class="">
 			<th>任务名称</th>
 			<th>被测url</th>

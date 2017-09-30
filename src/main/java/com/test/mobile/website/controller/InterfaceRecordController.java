@@ -20,13 +20,13 @@ public class InterfaceRecordController {
 	
 	@RequestMapping("getInterfaceRecord")
 	public String getInterfaceRecord(Map<String,Object> map,@RequestParam(defaultValue="1",required=false,name="page") Integer page){
-		
+		System.out.println("收到请求");
 		List<InterfaceRecord> records = interfaceRecordService.getRecord(page);
 		PageInfo<InterfaceRecord> p = new PageInfo<InterfaceRecord>(records);
 		System.out.println(p);
 		map.put("records", records);
 		map.put("page", p);
 		
-		return "listrecord";
+		return "listrecord1";
 	}
 }

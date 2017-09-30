@@ -23,6 +23,7 @@
 		<property name="driverClass" value="${jdbc.driverClass}"></property>
 		<property name="user" value="${jdbc.user}"></property>
 		<property name="password" value="${jdbc.password}"></property>
+		<property name="testConnectionOnCheckout" value="true"></property>
 	</bean>
 
 	<!--================== 配置和MyBatis的整合=============== -->

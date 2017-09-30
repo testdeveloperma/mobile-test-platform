@@ -9,14 +9,14 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 	
 	public List<Task> getAll();
 	-->
-	<!-- <insert id="add" parameterType="com.test.mobile.website.bean.Task">
+	 <insert id="add" parameterType="com.test.mobile.website.bean.Task">
 		insert into task(task_name,server_ip,domain_name,url,email,status,user_id)
 		 values(#{taskName},#{serverIp},#{domainName},#{url},#{email},#{status},#{userId})
-	</insert> -->
+	</insert> 
 	
-	<!-- <select id="getTaskByUserId"  resultType="com.test.mobile.website.bean.Task">
+	<select id="getTaskByUserId"  resultType="com.test.mobile.website.bean.Task">
 		select id,task_name,server_ip,domain_name,url,email,status,user_id from task where user_id=#{userId} order by id
-	</select> -->
+	</select> 
 	
 	<select id="getAll"  resultType="com.test.mobile.website.bean.Task">
 		select id,task_name,server_ip,domain_name,url,email,status,user_id from task order by id desc

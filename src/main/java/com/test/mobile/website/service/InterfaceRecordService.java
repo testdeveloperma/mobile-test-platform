@@ -29,4 +29,9 @@ public class InterfaceRecordService {
 		
 	}
 
+	public void deleteById(Integer id) {
+		// TODO Auto-generated method stub
+		interfaceRecordMapper.deleteById(id);
+	}
+
 }

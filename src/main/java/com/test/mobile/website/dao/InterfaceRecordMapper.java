@@ -7,5 +7,7 @@ import com.test.mobile.website.bean.InterfaceRecord;
 public interface InterfaceRecordMapper {
 
 	public List<InterfaceRecord>  getRecord();
+
+	public void deleteById(Integer id);
 	
 }

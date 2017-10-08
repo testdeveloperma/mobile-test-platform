@@ -4,8 +4,11 @@ import java.util.List;
 import java.util.Map;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.HttpMethod;
 import org.springframework.stereotype.Controller;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 
 import com.github.pagehelper.PageInfo;
@@ -18,7 +21,7 @@ public class InterfaceRecordController {
 	@Autowired
 	InterfaceRecordService interfaceRecordService;
 	
-	@RequestMapping("getInterfaceRecord")
+	@RequestMapping("getInterfaceRecords")
 	public String getInterfaceRecord(Map<String,Object> map,@RequestParam(defaultValue="1",required=false,name="page") Integer page){
 		System.out.println("收到请求");
 		List<InterfaceRecord> records = interfaceRecordService.getRecord(page);
@@ -28,5 +31,10 @@ public class InterfaceRecordController {
 		map.put("page", p);
 		
 		return "listrecord1";
+	}
+	
+	@RequestMapping(value="InterfaceRecrod/{id}",method=RequestMethod.DELETE)
+	public void deleteById(@PathVariable("id") Integer id){
+		interfaceRecordService.deleteById(id);
 	}
 }

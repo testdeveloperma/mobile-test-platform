@@ -73,7 +73,7 @@ AdminLTE App
 						</div>
 						<div class="row">
 							<div class="col-sm-12">
-								<table id="example1"
+								<table id="interfaces_table"
 									class="table table-bordered table-striped dataTable"
 									role="grid" aria-describedby="example1_info">
 									<thead>
@@ -128,13 +128,13 @@ AdminLTE App
 												<td>${record.responseResult }</td>
 												<td>${record.responseCode }</td>
 												<td>${record.responseHeader }</td>
-												<td><button  type="button" class="btn delete_btn btn-block btn-danger btn-xs" >删除</button>
-												<button type="button" class="btn btn-block btn-primary btn-xs edit_btn">编辑</button>
+												<td><button  type="button" style="width: 45%;float: left;" class="btn btn-block btn-danger btn-xs" >删除</button>
+												<button type="button" style="width: 45%;float: right;margin-top: 0px;" class="btn btn-block btn-primary btn-xs">编辑</button>
 												</td>
 
 											</tr>
 										</c:forEach>
-
+	
 								<!-- 		<tr role="row" class="odd">
 											<td class="sorting_1">Gecko</td>
 											<td>Firefox 1.0</td>
@@ -196,11 +196,36 @@ AdminLTE App
 		<!-- /.col -->
 	</div>
 
-
-
-
 <jsp:include page="../../footer.jsp"></jsp:include>
 
 
 </body>
+<script type="text/javascript">
+	$(function(){
+		$("button.btn-danger").click(function(){
+			var id = $(this).parents("td").first().text();
+			$.ajax({
+				url:"InterfaceRecord/" + id,
+				type:"delete",
+				success:function(result){
+					
+				}
+			})
+		})
+	})
+	function build_interfaces_table(result){
+		$("#interfaces_table tbody").empty();
+		var ints = ;
+		$.each(ints,function(index,item)){
+			var idBtn = $("<td></td>").append(item.id);
+			var idBtn = $("<td></td>").append(item.id);
+			var idBtn = $("<td></td>").append(item.id);
+			var idBtn = $("<td></td>").append(item.id);
+			var idBtn = $("<td></td>").append(item.id);
+			var idBtn = $("<td></td>").append(item.id);
+			var idBtn = $("<td></td>").append(item.id);
+		}
+	}
+
+</script>
 </html>

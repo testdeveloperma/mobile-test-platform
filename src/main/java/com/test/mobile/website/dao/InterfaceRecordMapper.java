@@ -9,5 +9,9 @@ public interface InterfaceRecordMapper {
 	public List<InterfaceRecord>  getRecord();
 
 	public void deleteById(Integer id);
+
+	public void updateInterfaceRecord(InterfaceRecord interfaceRecord);
+
+	public InterfaceRecord getInterfaceRecordById(Integer id);
 	
 }

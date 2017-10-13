@@ -1,45 +1,7 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
-<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
-<html>
-<head>
-<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-<title>Insert title here</title>
-<!-- <link rel="stylesheet" href="../../bower_components/bootstrap/dist/css/bootstrap.min.css">
-  Font Awesome
-  <link rel="stylesheet" href="../../bower_components/font-awesome/css/font-awesome.min.css">
-  Ionicons
-  <link rel="stylesheet" href="../../bower_components/Ionicons/css/ionicons.min.css">
-  Theme style
-  <link rel="stylesheet" href="../../dist/css/AdminLTE.min.css">
-  AdminLTE Skins. We have chosen the skin-blue for this starter
-        page. However, you can choose any other skin. Make sure you
-        apply the skin class to the body tag so the changes take effect.
-  <link rel="stylesheet" href="../../dist/css/skins/skin-blue.min.css">
 
-  HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries
-  WARNING: Respond.js doesn't work if you view the page via file://
-  [if lt IE 9]>
-  <script src="https://oss.maxcdn.com/html5shiv/3.7.3/html5shiv.min.js"></script>
-  <script src="https://oss.maxcdn.com/respond/1.4.2/respond.min.js"></script>
-  <![endif]
-
-  Google Font
-  <link rel="stylesheet"
-        href="https://fonts.googleapis.com/css?family=Source+Sans+Pro:300,400,600,700,300italic,400italic,600italic">
-<script src="../../bower_components/jquery/dist/jquery.min.js"></script>
-Bootstrap 3.3.7
-<script src="../../bower_components/bootstrap/dist/js/bootstrap.min.js"></script>
-AdminLTE App
-<script src="../../dist/js/adminlte.min.js"></script> -->
-</head>
-
-<script type="text/javascript">
-	
-</script>
-<body>
-	<jsp:include page="../../header.jsp"></jsp:include>
 	<div class="row">
 		<div class="col-xs-12">
 
@@ -205,10 +167,9 @@ AdminLTE App
 		<!-- /.col -->
 	</div>
 
-	<jsp:include page="../../footer.jsp"></jsp:include>
 
 
-</body>
+
 <script type="text/javascript">
 	$(function() {
 		$("#getRecords").click(function(){
@@ -343,4 +304,3 @@ AdminLTE App
 	}
 	
 </script>
-</html>

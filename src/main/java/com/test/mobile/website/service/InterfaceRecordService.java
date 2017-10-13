@@ -24,7 +24,7 @@ public class InterfaceRecordService {
 		}
 		
 		List<InterfaceRecord> records = interfaceRecordMapper.getRecord();
-		
+		System.out.println(records);
 		return records;
 		
 	}
@@ -32,6 +32,16 @@ public class InterfaceRecordService {
 	public void deleteById(Integer id) {
 		// TODO Auto-generated method stub
 		interfaceRecordMapper.deleteById(id);
+	}
+
+	public void updateInterfaces(InterfaceRecord interfaceRecord) {
+		// TODO Auto-generated method stub
+		interfaceRecordMapper.updateInterfaceRecord(interfaceRecord);
+	}
+
+	public InterfaceRecord getInterfaceRecordById(Integer id) {
+		// TODO Auto-generated method stub
+		return interfaceRecordMapper.getInterfaceRecordById(id);
 	}
 
 }

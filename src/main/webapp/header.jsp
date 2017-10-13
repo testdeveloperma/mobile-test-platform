@@ -274,7 +274,7 @@ desired effect
 						<ul class="treeview-menu">
 							<!--           <button onclick="menuClick('getInterfaceRecord')">mock数据源</button>
  -->
-							<li><a href="getInterfaceRecord">mock数据源</a></li>
+							<li><a href="#" id="getRecords">mock数据源</a></li>
 							<li><a href="#">Link in level 2</a></li>
 						</ul></li>
 				</ul>

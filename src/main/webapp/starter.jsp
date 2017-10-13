@@ -13,6 +13,8 @@ scratch. This page gets rid of all links and provides the needed markup only.
   <title>AdminLTE 2 | Starter</title>
   <!-- Tell the browser to be responsive to screen width -->
   <meta content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no" name="viewport">
+  <link rel="stylesheet" href="static/css/mystyle.css" />
+  
   <link rel="stylesheet" href="bower_components/bootstrap/dist/css/bootstrap.min.css">
   <!-- Font Awesome -->
   <link rel="stylesheet" href="bower_components/font-awesome/css/font-awesome.min.css">
@@ -36,101 +38,77 @@ scratch. This page gets rid of all links and provides the needed markup only.
  <!--  <link rel="stylesheet"
         href="https://fonts.googleapis.com/css?family=Source+Sans+Pro:300,400,600,700,300italic,400italic,600italic"> -->
 <!-- REQUIRED JS SCRIPTS -->
-<script type="text/javascript">
-var menuClick = function(menuUrl) {
-    
-    $("#content-body").load('${pageContext.request.contextPath}/getInterfaceRecord');
- // CHECK TO SEE IF URL EXISTS
-    function checkURL() {
 
-    	//get the url by removing the hash
-    	var url = location.hash.replace(/^#/, '');
+<!-- jQuery 3 -->
+<!-- <script src="bower_components/jquery/dist/jquery.min.js"></script> -->
+<!-- Bootstrap 3.3.7
+<script src="bower_components/bootstrap/dist/js/bootstrap.min.js"></script>
+AdminLTE App
+<script src="dist/js/adminlte.min.js"></script> -->
 
-    	container = $('#content');
-    	// Do this if url exists (for page refresh, etc...)
-    	if (url) {
-    		// remove all active class
-    		$('nav li.active').removeClass("active");
-    		// match the url and add the active class
-    		$('nav li:has(a[href="' + url + '"])').addClass("active");
-    		var title = ($('nav a[href="' + url + '"]').attr('title'))
-
-    		// change page title from global var
-    		document.title = (title || document.title);
-    		//console.log("page title: " + document.title);
-
-    		// parse url to jquery
-    		loadURL(url + location.search, container);
-    	} else {
-
-    		// grab the first URL from nav
-    		var $this = $('nav > ul > li:first-child > a[href!="#"]');
-
-    		//update hash
-    		window.location.hash = $this.attr('href');
-
-    	}
-
-    }
-
-};
-
-
-function loadURL(url, container) {
-	//console.log(container)
-
-	$.ajax({
-		type : "GET",
-		url : url,
-		dataType : 'html',
-		cache : true, // (warning: this will cause a timestamp and will call the request twice)
-		beforeSend : function() {
-			// cog placed
-			container.html('<h1><i class="fa fa-cog fa-spin"></i> Loading...</h1>');
-		
-			// Only draw breadcrumb if it is main content material
-			// TODO: see the framerate for the animation in touch devices
-			
-			if (container[0] == $("#content")[0]) {
-				drawBreadCrumb();
-				// scroll up
-				$("html").animate({
-					scrollTop : 0
-				}, "fast");
-			} 
-		},
-		/*complete: function(){
-	    	// Handle the complete event
-	    	// alert("complete")
-		},*/
-		success : function(data) {
-			// cog replaced here...
-			// alert("success")
-			
-			container.css({
-				opacity : '0.0'
-			}).html(data).delay(50).animate({
-				opacity : '1.0'
-			}, 300);
-			
-
-		},
-		error : function(xhr, ajaxOptions, thrownError) {
-			container.html('<h4 style="margin-top:10px; display:block; text-align:left"><i class="fa fa-warning txt-color-orangeDark"></i> Error 404! Page not found.</h4>');
-		},
-		async : false
-	});
-
-	//console.log("ajax request sent");
-}
-
-</script>
 <!-- jQuery 3 -->
 <script src="bower_components/jquery/dist/jquery.min.js"></script>
+<!-- jQuery UI 1.11.4 -->
+<script src="bower_components/jquery-ui/jquery-ui.min.js"></script>
+<!-- Resolve conflict in jQuery UI tooltip with Bootstrap tooltip -->
+<script>
+  $.widget.bridge('uibutton', $.ui.button);
+</script>
 <!-- Bootstrap 3.3.7 -->
 <script src="bower_components/bootstrap/dist/js/bootstrap.min.js"></script>
+<!-- Morris.js charts -->
+<!-- <script src="bower_components/raphael/raphael.min.js"></script>
+<script src="bower_components/morris.js/morris.min.js"></script> -->
+<!-- Sparkline -->
+<script src="bower_components/jquery-sparkline/dist/jquery.sparkline.min.js"></script>
+<!-- jvectormap -->
+<script src="plugins/jvectormap/jquery-jvectormap-1.2.2.min.js"></script>
+<script src="plugins/jvectormap/jquery-jvectormap-world-mill-en.js"></script>
+<!-- jQuery Knob Chart -->
+<script src="bower_components/jquery-knob/dist/jquery.knob.min.js"></script>
+<!-- daterangepicker -->
+<script src="bower_components/moment/min/moment.min.js"></script>
+<script src="bower_components/bootstrap-daterangepicker/daterangepicker.js"></script>
+<!-- datepicker -->
+<script src="bower_components/bootstrap-datepicker/dist/js/bootstrap-datepicker.min.js"></script>
+<!-- Bootstrap WYSIHTML5 -->
+<script src="plugins/bootstrap-wysihtml5/bootstrap3-wysihtml5.all.min.js"></script>
+<!-- Slimscroll -->
+<script src="bower_components/jquery-slimscroll/jquery.slimscroll.min.js"></script>
+<!-- FastClick -->
+<script src="bower_components/fastclick/lib/fastclick.js"></script>
 <!-- AdminLTE App -->
 <script src="dist/js/adminlte.min.js"></script>
+<!-- AdminLTE dashboard demo (This is only for demo purposes) -->
+<!-- <script src="dist/js/pages/dashboard.js"></script>
+ --><!-- AdminLTE for demo purposes -->
+<script src="dist/js/demo.js"></script>
+
+<script type="text/javascript">
+    //$("#content-body").load('${pageContext.request.contextPath}/getInterfaceRecord');
+ 	$(function(){
+ 	   $("[data-url]").click(function(){
+ 	 		var url = $(this).attr("data-url");
+ 	 		loadUrl(url);
+ 	 		$("li").removeClass("active");
+ 	 		$(this).parent().addClass("active");
+ 	 	})
+ 	})
+ 
+    function loadUrl(url){
+ 		$.ajax({
+ 			url:url,
+ 			dataType:"html",
+ 			type:"get",
+ 			success:function(data){
+ 				$("#content-body").html(data);
+ 			}
+ 			
+ 		})
+ 		
+ 	}
+
+</script>
 </head>
 <!--
 BODY TAG OPTIONS:
@@ -367,8 +345,8 @@ desired effect
               </span>
           </a>
           <ul class="treeview-menu">
-            <li><a href="getInterfaceRecord" target="content">测试用例</a></li>
-            <li><a href="#">Link in level 2</a></li>
+            <li><a id="nav" href="#" data-url="getInterfaceRecords">测试用例</a></li>
+            <li><a id="nav" href="#" data-url="interfaceRecrod/2">Link in level 2</a></li>
           </ul>
         </li>
       </ul>
@@ -397,7 +375,7 @@ desired effect
       <!--------------------------
         | Your Page Content Here |
         -------------------------->
-		<iframe src="getInterfaceRecord" name="content"></iframe>
+		
     </section>
     <!-- /.content -->
   </div>

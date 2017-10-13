@@ -19,7 +19,41 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 		select id,url,method,request_param,request_header,response_result,response_code,response_header from http_data order by id desc
 	</select>
 	
+	<select id="getInterfaceRecordById"  resultType="com.test.mobile.website.bean.InterfaceRecord" parameterType="java.lang.Integer">
+		select id,url,method,request_param,request_header,response_result,response_code,response_header from http_data where id = #{id}
+	</select>
+	
 	<delete id="deleteById" parameterType="java.lang.Integer">
-		delete from http_data where id=#{id,jdbcType=Integer} 
+		delete from http_data where id=#{id}
 	</delete>
+	<!--  -->
+	
+	<update id="updateInterfaceRecord" parameterType="com.test.mobile.website.bean.InterfaceRecord">
+		update http_data
+		<set>
+			<if test="url != null">
+				url = #{url},
+			</if>
+			<if test="method != null">
+				method = #{method},
+			</if>
+			<if test="requestHeader != null">
+				request_header = #{requestHeader},
+			</if>
+			<if test="requestParam != null">
+				request_param = #{requestParam},
+			</if>
+			<if test="responseResult != null">
+				response_result = #{responseResult},
+			</if>
+			<if test="responseHeader != null">
+				response_header = #{responseHeader},
+			</if>
+			<if test="responseCode != null">
+				response_code = #{responseCode},
+			</if>
+			
+		</set>
+		where id = #{id}
+	</update>
 </mapper>

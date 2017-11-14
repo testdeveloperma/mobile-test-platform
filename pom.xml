@@ -8,6 +8,21 @@
 
 
 	<dependencies>
+
+		<!-- https://mvnrepository.com/artifact/org.jacoco/org.jacoco.core -->
+		<dependency>
+			<groupId>org.jacoco</groupId>
+			<artifactId>org.jacoco.core</artifactId>
+			<version>0.7.9</version>
+		</dependency>
+
+		<!-- https://mvnrepository.com/artifact/org.jacoco/org.jacoco.report -->
+		<dependency>
+			<groupId>org.jacoco</groupId>
+			<artifactId>org.jacoco.report</artifactId>
+			<version>0.7.9</version>
+		</dependency>
+
 		<!-- 支持JSR303 数据校验 -->
 		<!-- https://mvnrepository.com/artifact/org.hibernate/hibernate-validator -->
 		<dependency>

@@ -71,6 +71,12 @@ public class InterfaceRecordController {
 		interfaceRecordService.deleteById(id);
 	}
 	
+	
+	/**
+	 * 
+	 * @param interfaceRecord
+	 */
+	
 	@RequestMapping(value="interfaceRecord/{id}",method=RequestMethod.PUT)
 	public void updateInterfaces(InterfaceRecord interfaceRecord){
 		interfaceRecordService.updateInterfaces(interfaceRecord);

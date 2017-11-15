@@ -179,6 +179,13 @@
 			alert("this:" + this);
 			delete_interface(this);	
 		})
+		
+		$("button.btn-primary").click(function(){
+			var id = $(this).parent().siblings().first().text();
+			var url = "interfaceRecrod/" + id;
+			loadUrl(url);
+			
+		})
 	})
 	
 	function delete_interface(object) {

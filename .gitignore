@@ -2,29 +2,23 @@ target/*
 .classpath
 .project
 .settings/*
-.classpath
-.settings/org.eclipse.jdt.core.prefs
-src/main/resources/dbconfig.properties
-target/classes/com/test/mobile/website/controller/InterfaceRecordController.class
-target/classes/dbconfig.properties
-target/m2e-wtp/web-resources/META-INF/maven/com.moblie/mobile-test-platform/pom.properties    
- *.mdb  
- *.ldb  
- *.sln    
- *.com  
- *.class  
- *.dll  
- *.exe  
- *.o  
- *.so  
- *.7z  
- *.dmg  
- *.gz  
- *.iso  
- *.jar  
- *.rar  
- *.tar  
- *.zip  
- *.via
- *.tmp
- *.err 
+*.mdb  
+*.ldb  
+*.sln    
+*.com  
+*.class  
+*.dll  
+*.exe  
+*.o  
+*.so  
+*.7z  
+*.dmg  
+*.gz  
+*.iso  
+*.jar  
+*.rar  
+*.tar  
+*.zip  
+*.via
+*.tmp
+*.err 

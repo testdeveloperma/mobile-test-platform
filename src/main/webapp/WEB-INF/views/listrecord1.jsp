@@ -218,6 +218,9 @@ AdminLTE App
 			alert("this:" + this);
 			delete_interface(this);	
 		})
+		
+		
+		
 	})
 	
 	function delete_interface(object) {

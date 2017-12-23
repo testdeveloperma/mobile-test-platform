@@ -58,7 +58,7 @@ public class InterfaceRecordController {
 	 * 根据id 查询 mock 数据
 	 * @return
 	 */
-	@RequestMapping(value="interfaceRecrod/{id}",method=RequestMethod.GET)
+	@RequestMapping(value="interfaceRecord/{id}",method=RequestMethod.GET)
 	public String getInterfaceRecordById(Map<String,Object> map,@PathVariable("id") Integer id){
 		
 		InterfaceRecord record = interfaceRecordService.getInterfaceRecordById(id);
@@ -66,9 +66,11 @@ public class InterfaceRecordController {
 		return "editrecord";
 	}
 	
-	@RequestMapping(value="interfaceRecrod/{id}",method=RequestMethod.DELETE)
-	public void deleteById(@PathVariable("id") Integer id){
+	@RequestMapping(value="interfaceRecord/{id}",method=RequestMethod.DELETE)
+	@ResponseBody
+	public Msg deleteById(@PathVariable("id") Integer id){
 		interfaceRecordService.deleteById(id);
+		return Msg.success();
 	}
 	
 	

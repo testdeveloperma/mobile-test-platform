@@ -339,13 +339,14 @@ desired effect
         <li class="active"><a href="#"><i class="fa fa-link"></i> <span>Link</span></a></li>
         <li><a href="#"><i class="fa fa-link"></i> <span>Another Link</span></a></li>
         <li class="treeview">
-          <a href="#"><i class="fa fa-link"></i> <span>Multilevel</span>
+          <a href="#"><i class="fa fa-link"></i> <span>接口录制与回放</span>
             <span class="pull-right-container">
                 <i class="fa fa-angle-left pull-right"></i>
               </span>
           </a>
           <ul class="treeview-menu">
-            <li><a id="nav" href="#" data-url="getInterfaceRecords">测试用例</a></li>
+            <li><a id="nav" href="#" data-url="getInterfaceRecords">原始接口数据</a></li>
+            <li><a id="nav" href="#" data-url="interfaceRecrod/2">破坏后的数据</a></li>
             <li><a id="nav" href="#" data-url="interfaceRecrod/2">Link in level 2</a></li>
           </ul>
         </li>
@@ -388,7 +389,7 @@ desired effect
       Anything you want
     </div>
     <!-- Default to the left -->
-    <strong>Copyright &copy; 2016 <a href="#">Company</a>.</strong> All rights reserved.
+    <strong>Copyright &copy; 2017 <a href="#">Company</a>.</strong> All rights reserved.
   </footer>
 
   <!-- Control Sidebar -->

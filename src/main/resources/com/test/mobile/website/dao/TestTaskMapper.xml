@@ -1,0 +1,60 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.test.mobile.website.dao.TestTaskMapper">
+
+	<resultMap type="testTaskDetail" id="resultTaskDetailMap">
+		<result property="id" column="id"/>
+		<result property="times" column="times"/>
+		<result property="createTime" column="create_time"/>
+		<result property="state" column="state"/>
+		<association property="scheme" javaType="com.test.mobile.website.bean.Scheme">
+			<result property="id" column="id"/>
+			<result property="businessLine" column="business_line"/>
+			<result property="pageName" column="page_name"/>
+			<result property="clientType" column="client_type"/>
+			<result property="schemeUrl" column="scheme_url"/>
+		</association>
+		<association property="weightConfig" javaType="com.test.mobile.website.bean.WeightConfig">
+			<result property="id" column="id"/>
+			<result property="del" column="del"/>
+			<result property="changeType" column="change_type"/>
+			<result property="changeValue" column="change_value"/>
+			<result property="emptyValue" column="empty"/>
+			<result property="jsonStr" column="json_str"/>
+		</association>
+	</resultMap>
+		
+		
+		
+
+	<select id="getAll" resultMap="resultTaskDetailMap">
+		select t.*,s.*,w.* from test_task t,scheme s,weight_config w where t.scheme_id = s.id and t.weightconfig_id = w.id order by t.id desc
+	</select>
+	<select id="getTestTaskById" resultMap="resultTaskDetailMap">
+		select t.*,s.*,w.* from test_task t,scheme s,weight_config w where t.id = #{id} and t.scheme_id = s.id and t.weightconfig_id = w.id order by t.id desc
+	</select>
+	
+	<select id="getTestTaskByState" resultMap="resultTaskDetailMap">
+		select t.*,s.*,w.* from test_task t,scheme s,weight_config w where t.state = #{state} and t.scheme_id = s.id and t.weightconfig_id = w.id order by t.id desc
+	</select>
+
+	<insert id="add" useGeneratedKeys="true" keyProperty="id"
+		parameterType="com.test.mobile.website.bean.TestTask">
+		insert into
+		test_task(scheme_id,weightconfig_id,times,create_time,state)
+		values(#{schemeId},#{weightconfigId},#{times},now(),#{state})
+	</insert>
+
+
+	<update id="updateState" parameterType="com.test.mobile.website.bean.TestTask">
+		update test_task set state = #{state} where id = #{id}
+	</update>
+
+
+
+	<!-- <delete id="deleteWhiteListById"> delete from white_list where id = 
+		#{id} </delete> -->
+
+</mapper>

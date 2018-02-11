@@ -16,15 +16,16 @@ import com.test.mobile.website.bean.InterfaceRecord;
 import com.test.mobile.website.bean.Msg;
 import com.test.mobile.website.service.InterfaceRecordService;
 
+
 @Controller
 public class InterfaceRecordController {
 
 	@Autowired
 	InterfaceRecordService interfaceRecordService;
 	
-	@RequestMapping("getInterfaceRecord")
+	@RequestMapping("strong/test")
 	public String getInterfaceRecord(Map<String,Object> map,@RequestParam(defaultValue="1",required=false,name="page") Integer page){
-		System.out.println("收到请求");
+		System.out.println("收到请求page:" + page);
 		List<InterfaceRecord> records = interfaceRecordService.getRecord(page);
 		PageInfo<InterfaceRecord> p = new PageInfo<InterfaceRecord>(records);
 		

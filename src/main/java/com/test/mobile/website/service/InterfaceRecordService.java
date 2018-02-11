@@ -17,14 +17,14 @@ public class InterfaceRecordService {
 	
 	public List<InterfaceRecord> getRecord(Integer page) {
 		
-		if(page != null){
+		if(page != null && page != 0){
 			PageHelper.startPage(page, 10);
 		}else{
 			PageHelper.startPage(1, 10);
 		}
 		
 		List<InterfaceRecord> records = interfaceRecordMapper.getRecord();
-		System.out.println(records);
+		
 		return records;
 		
 	}

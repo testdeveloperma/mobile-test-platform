@@ -1,0 +1,55 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.test.mobile.website.dao.LockMarkMapper">
+
+	<resultMap type="testTaskDetail" id="resultTaskDetailMap">
+		<result property="id" column="id"/>
+		<result property="times" column="times"/>
+		<result property="createTime" column="create_time"/>
+		<result property="state" column="state"/>
+		<association property="scheme" javaType="com.test.mobile.website.bean.Scheme">
+			<result property="id" column="id"/>
+			<result property="businessLine" column="business_line"/>
+			<result property="pageName" column="page_name"/>
+			<result property="clientType" column="client_type"/>
+			<result property="schemeUrl" column="scheme_url"/>
+		</association>
+		<association property="weightConfig" javaType="com.test.mobile.website.bean.WeightConfig">
+			<result property="id" column="id"/>
+			<result property="del" column="del"/>
+			<result property="changeType" column="change_type"/>
+			<result property="changeValue" column="change_value"/>
+			<result property="emptyValue" column="empty"/>
+			<result property="jsonStr" column="json_str"/>
+		</association>
+	</resultMap>
+		
+		
+		
+
+	<select id="getAll"  resultType="com.test.mobile.website.bean.LockMark">
+		select id,worker_name,execute_state from lock_mark
+	</select>
+	<select id="getTestTaskById" resultMap="resultTaskDetailMap">
+		select t.*,s.*,w.* from test_task t,scheme s,weight_config w where t.id = #{id} and t.scheme_id = s.id and t.weightconfig_id = w.id
+	</select>
+	
+	<select id="getLockMarkByName" resultType="com.test.mobile.website.bean.LockMark">
+		select  id,worker_name,execute_state from lock_mark where worker_name = #{workerName}
+	</select>
+
+	
+
+
+	<update id="updateState" parameterType="com.test.mobile.website.bean.LockMark">
+		update lock_mark set execute_state = #{executeState} where worker_name = #{workerName}
+	</update>
+
+
+
+	<!-- <delete id="deleteWhiteListById"> delete from white_list where id = 
+		#{id} </delete> -->
+
+</mapper>

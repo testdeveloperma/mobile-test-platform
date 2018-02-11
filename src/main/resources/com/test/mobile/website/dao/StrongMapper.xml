@@ -1,0 +1,61 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.test.mobile.website.dao.StrongMapper">
+	
+	<!-- public void add(Task task); 
+	public List<Task> getTaskByUserId(Integer userId);
+	
+	public List<Task> getAll();
+	-->
+	 <insert id="addScheme" useGeneratedKeys="true" keyProperty="id" parameterType="com.test.mobile.website.bean.Scheme">
+		insert into scheme(business_line,page_name,client_type,scheme_url)
+		 values(#{businessLine},#{pageName},#{clientType},#{schemeUrl})
+	</insert> 
+	
+	
+	<update id="updateScheme" parameterType="com.test.mobile.website.bean.Scheme">
+		update scheme
+		<set>
+			<if test="pageName != null and pageName != ''">
+				page_name = #{pageName},
+			</if>
+			
+			<if test="clientType != null and clientType != ''">
+				client_type = #{clientType},
+			</if>
+			
+			<if test="schemeUrl != null and schemeUrl != ''">
+				scheme_url = #{schemeUrl},
+			</if>
+		</set>
+		where id = #{id}
+	</update>
+	
+	<delete id="deleteById" parameterType="int">
+		delete from scheme where id = #{id}
+	</delete>
+	
+	<select id="getSchemeById"  resultType="com.test.mobile.website.bean.Scheme">
+		select id,business_line,page_name,client_type,scheme_url from scheme where id=#{id}
+	</select>
+	
+	<select id="getScheme"  parameterType="com.test.mobile.website.bean.SchemeSearch"  resultType="com.test.mobile.website.bean.Scheme">
+		select id,business_line,page_name,client_type,scheme_url from scheme
+		<where>
+			<if test="id != null">
+				id = #{id}
+			</if>
+			
+			<if test="businessLine != null and businessLine != ''">
+				and business_line like #{businessLine}
+			</if>
+			
+			<if test="pageName != null and pageName != ''">
+				and page_name like #{pageName}
+			</if>
+		</where>
+		 order by id desc
+	</select> 
+</mapper>

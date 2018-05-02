@@ -4,26 +4,12 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="com.test.mobile.website.dao.StrongTestResultMapper">
 
-	<resultMap type="testTaskDetail" id="resultTaskDetailMap">
+	<resultMap type="strongResult" id="resultTaskDetailMap">
 		<result property="id" column="id"/>
-		<result property="times" column="times"/>
-		<result property="createTime" column="create_time"/>
-		<result property="state" column="state"/>
-		<association property="scheme" javaType="com.test.mobile.website.bean.Scheme">
-			<result property="id" column="id"/>
-			<result property="businessLine" column="business_line"/>
-			<result property="pageName" column="page_name"/>
-			<result property="clientType" column="client_type"/>
-			<result property="schemeUrl" column="scheme_url"/>
-		</association>
-		<association property="weightConfig" javaType="com.test.mobile.website.bean.WeightConfig">
-			<result property="id" column="id"/>
-			<result property="del" column="del"/>
-			<result property="changeType" column="change_type"/>
-			<result property="changeValue" column="change_value"/>
-			<result property="emptyValue" column="empty"/>
-			<result property="jsonStr" column="json_str"/>
-		</association>
+		<result property="taskId" column="task_id"/>
+		<result property="picturePath" column="picture_path"/>
+		<result property="crashPath" column="crash_path"/>
+		<result property="crashDetail" column="crash_detail"/>
 	</resultMap>
 		
 		
@@ -36,10 +22,14 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 		select t.*,s.*,w.* from test_task t,scheme s,weight_config w where t.id = #{id} and t.scheme_id = s.id and t.weightconfig_id = w.id
 	</select>
 	
-	<select id="getTestTaskByState" resultMap="resultTaskDetailMap">
-		select t.*,s.*,w.* from test_task t,scheme s,weight_config w where t.state = #{state} and t.scheme_id = s.id and t.weightconfig_id = w.id
+	<select id="getStrongResultByTaskId" resultType="com.test.mobile.website.bean.StrongResult">
+		select id,task_id,picture_path,crash_path,crash_detail from strong_result r where r.task_id=#{taskId}
 	</select>
 
+	<select id="getMaxId" resultType="java.lang.Integer">
+		select max(id) from strong_result
+	</select>
+	
 	<insert id="add" useGeneratedKeys="true" keyProperty="id"
 		parameterType="com.test.mobile.website.bean.StrongResult">
 		insert into

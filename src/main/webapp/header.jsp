@@ -42,6 +42,18 @@ scratch. This page gets rid of all links and provides the needed markup only.
 <link rel="stylesheet"
 	href="https://fonts.googleapis.com/css?family=Source+Sans+Pro:300,400,600,700,300italic,400italic,600italic">
 <script src="/bower_components/jquery/dist/jquery.min.js"></script>
+<script type="text/javascript">
+$(function(){
+	console.log('this sad',$('#carousel-example-generic').length)
+	
+	
+	/* $("a.carousel-control").click(function(){
+		kkk();
+	}) */
+	
+})
+
+</script>
 <!-- Bootstrap 3.3.7 -->
 <script src="/bower_components/bootstrap/dist/js/bootstrap.min.js"></script>
 <!-- AdminLTE App -->
@@ -277,7 +289,7 @@ desired effect
 							
 							<li><a href="/strong/scheme/list">APP页面路由管理</a></li>
 							<li><a href="/strong/testtask/list">测试任务</a></li>
-							<li><a href="/strong/test">mock 数据</a></li>
+							<li><a href="/strong/httpdata/list">mock 数据</a></li>
 							<li><a href="/strong/whitelist/list">接口白名单</a></li>
 							<li><a href="/strong/weightconfig/list">权重配置</a></li>
 						</ul></li>

@@ -34,6 +34,16 @@ Bootstrap 3.3.7
 AdminLTE App
 <script src="../../dist/js/adminlte.min.js"></script> -->
 </head>
+<style>
+.right{
+right:70;
+}
+
+.carousel-control{
+width:5%;
+}
+
+</style>
 
 <script type="text/javascript">
 	
@@ -55,17 +65,7 @@ AdminLTE App
 				</div>
 				<div class="modal-body">
 					<form class="form-horizontal">
-						
-						<div class="form-group">
-							<label class="col-sm-2 control-label">任务名称</label>
-							<div class="col-sm-10">
-								<input type="text" class="form-control" id="testtask_input"
-									placeholder="请输入任务名称" name="taskName"> <span
-									class="help-block"></span>
-							</div>
 
-						</div>
-						
 						<div class="form-group">
 							<label class="col-sm-2 control-label">测试页面</label>
 							<div class="col-sm-10">
@@ -88,7 +88,7 @@ AdminLTE App
 							</label>
 						</div>
 						<div class="form-group">
-							<label class="col-sm-2 control-label">循环执行</label>
+							<label class="col-sm-2 control-label">路由配置</label>
 							<div class="col-sm-10">
 								<input type="text" class="form-control" id="testtask_input"
 									placeholder="任务执行次数" name="times"> <span
@@ -172,241 +172,185 @@ AdminLTE App
 
 
 	<div class="row">
-		<div class="col-xs-12">
+		<section class="content"> <!-- COLOR PALETTE -->
+		<%-- <div class="box box-default color-palette-box">
+			<div class="box-header with-border">
+				<h3 class="box-title">
+					<i class="fa fa-tag"></i> 测试任务信息
+				</h3>
+			</div>
+			<div class="box-body">
+				<p>
+					<b>业务线：</b>${taskdetail.scheme.businessLine }</p>
+				<p>
+					<b>测试页面：</b>${taskdetail.scheme.pageName }</p>
+				<p>
+					<b>路由配置：</b>${taskdetail.scheme.schemeUrl }</p>
+				<p>
+					<b>客户端类型：</b>${taskdetail.scheme.clientType }</p>
+				<p>
+					<b>权重配置：</b>${taskdetail.weightConfig.jsonStr }</p>
+				<p>
+					<b>业务线：</b>${taskdetail.scheme.businessLine }</p>
+				<p>
+					<b>业务线：</b>${taskdetail.scheme.businessLine }</p>
+			</div>
 
-			<div class="box">
-				<div class="box-header">
-					<h3 class="box-title"></h3>
-				</div>
-				<!-- /.box-header -->
-				<div class="box-body">
-					<div id="example1_wrapper"
-						class="dataTables_wrapper form-inline dt-bootstrap">
-						<div class="row">
-							<!-- <div class="col-sm-2">
-								<div class="dataTables_length" id="example1_length">
-									<label>Show <select name="example1_length"
-										aria-controls="example1" class="form-control input-sm"><option
-												value="10">10</option>
-											<option value="25">25</option>
-											<option value="50">50</option>
-											<option value="100">100</option></select> entries
-									</label>
-								</div>
-							</div> -->
-							<div class="col-sm-11">
-								<form action="/strong/testtask/list" method="get"
-									id="search_form">
-									<div id="example1_filter" class="dataTables_filter">
-										<label>testtaskId:&nbsp;&nbsp;&nbsp;<input type="text"
-											name="id" class="form-control input-sm" placeholder=""
-											aria-controls="example1"></label>
-										&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<label>业务线:&nbsp;&nbsp;&nbsp;<input
-											type="text" name="businessLine" class="form-control input-sm"
-											placeholder="" aria-controls="example1"></label>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-										<label>测试页面:&nbsp;&nbsp;&nbsp;<input type="text"
-											name="pageName" class="form-control input-sm" placeholder=""
-											aria-controls="example1"></label>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-										<button type="submit" id="search_testtask" style="width: 10%;"
-											class="btn btn-inline btn-info btn-sm">搜索</button>
-										&nbsp;&nbsp;&nbsp;&nbsp;
-										<button type="button" id="testtask_add_modal_btn"
-											style="width: 10%;" class="btn btn-inline btn-success btn-sm">添加</button>
+		</div> --%>
+		<!-- /.box --> <!-- START ALERTS AND CALLOUTS -->
+		<!-- <h2 class="page-header">Alerts and Callouts</h2> -->
 
-									</div>
-									<!-- <div id="example1_filter" class="dataTables_filter"></div>
-									<div id="example1_filter" class="dataTables_filter"></div> -->
-								</form>
-							</div>
-							<!-- <div class="col-sm-1">
-								<div id="example1_filter" class="dataTables_filter">
-									<button type="button" id="search_testtask" style="width: 100%;" class="btn btn-inline btn-primary btn-sm">搜索</button>
+		<div class="row" style="background:#ffffff">
+		
+			<div class="col-md-3">
+				<div class="box box-default">
+					<!-- <div class="box-header with-border">
+						<i class="fa fa-warning"></i>
+
+						<h3 class="box-title">Alerts</h3>
+					</div> -->
+					<!-- /.box-header -->
+					<div class="box-body">
+					
+						<c:if test="${strongresultList[0] != null }">
+					
+						<div id="carousel-example-generic" class="carousel slide"
+							data-ride="carousel">
+							<ol class="carousel-indicators">
+							</ol>
+							<!-- style="width: 20%; height: 10%;" -->
+							<div class="carousel-inner">
+								<c:forEach  var="strongresult" varStatus="iter"  items="${strongresultList }">
+									
+								<c:if test="${iter.first }">
+								<div class="item active">
+									<img data-id="${strongresult.id }" index="0"
+										src="${strongresult.picturePath }"
+										alt="First slide">
+
+									<div class="carousel-caption">${strongresult.id }</div>
 								</div>
-								
-							</div>
-							<div class="col-sm-1">
-								<div id="example1_filter" class="dataTables_filter">
-									<button type="button" id="testtask_add_modal_btn" style="width: 100%;" class="btn btn-inline btn-success btn-sm">添加</button>
+								</c:if>
+								<c:if test="${!iter.first }">
+								<div class="item">
+									<img data-id="${strongresult.id }" index="${iter.index }"
+										src="${strongresult.picturePath }"
+										alt="First slide">
+
+									<div class="carousel-caption">${strongresult.id }</div>
 								</div>
-								
-							</div> -->
+								</c:if>							
+						</c:forEach>
+							</div>
+							<a class="left carousel-control" href="#carousel-example-generic"
+								 data-slide="prev"> <span class="fa fa-angle-left"></span>
+							</a> <a class="right carousel-control" 
+								href="#carousel-example-generic" data-slide="next"> <span
+								class="fa fa-angle-right"></span>
+							</a>
 						</div>
-						<div class="row">
-							<div class="col-sm-12">
-								<table id="interfaces_table"
-									class="table table-bordered table-striped dataTable"
-									role="grid" aria-describedby="example1_info">
-									<thead>
-										<tr role="row">
-											<th class="sorting_asc" tabindex="0" aria-controls="example1"
-												rowspan="1" colspan="1" aria-sort="ascending"
-												aria-label="Rendering engine: activate to sort column descending"
-												style="width: 50px;">id</th>
-											<th class="sorting" tabindex="0" aria-controls="example1"
-												rowspan="1" colspan="1"
-												aria-label="Browser: activate to sort column ascending"
-												style="width: 60px;">业务线</th>
-											<th class="sorting" tabindex="0" aria-controls="example1"
-												rowspan="1" colspan="1"
-												aria-label="Platform(s): activate to sort column ascending"
-												style="width: 100px;">测试页面</th>
-											<th class="sorting" tabindex="0" aria-controls="example1"
-												rowspan="1" colspan="1"
-												aria-label="Engine version: activate to sort column ascending"
-												style="width: 69px;">客户端</th>
-												<th class="sorting" tabindex="0" aria-controls="example1"
-												rowspan="1" colspan="1"
-												aria-label="Engine version: activate to sort column ascending"
-												style="width: 50px;">执行次数</th>
-											<th class="sorting" tabindex="0" aria-controls="example1"
-												rowspan="1" colspan="1"
-												aria-label="CSS grade: activate to sort column ascending"
-												style="width: 280px;">权重配置</th>
-												<th class="sorting" tabindex="0" aria-controls="example1"
-												rowspan="1" colspan="1"
-												aria-label="CSS grade: activate to sort column ascending"
-												style="width: 120px;">任务名称</th>
-												<th class="sorting" tabindex="0" aria-controls="example1"
-												rowspan="1" colspan="1"
-												aria-label="CSS grade: activate to sort column ascending"
-												style="width: 70px;">任务状态</th>
-											<th class="sorting" tabindex="0" aria-controls="example1"
-												rowspan="1" colspan="1"
-												aria-label="CSS grade: activate to sort column ascending"
-												style="width: 80px;">操作</th>
-
-										</tr>
-									</thead>
-									<tbody>
-										<c:forEach var="testTaskDetail"
-											items="${requestScope.testTaskDetails }">
-											<tr role="row">
-												<td>${testTaskDetail.id }</td>
-												<td>${testTaskDetail.scheme.businessLine }</td>
-												<td>${testTaskDetail.scheme.pageName }</td>
-												<td>${testTaskDetail.scheme.clientType }</td>
-												<td>${testTaskDetail.times }</td>
-												<td>${testTaskDetail.weightConfig.jsonStr }</td>
-												<td>${testTaskDetail.taskName}</td>
-												<c:if test="${testTaskDetail.state == 'waiting' }">
-													<td><span style="line-height: 2" class="label label-danger">等待执行</span></td>
-												</c:if>
-												<c:if test="${testTaskDetail.state == 'running' }">
-													<td><span style="line-height: 2" class="label label-warning">正在执行</span></td>
-												</c:if>
-												<c:if test="${testTaskDetail.state == 'end' }">
-													<td><span style="line-height: 2" class="label label-success">测试完成</span></td>
-												</c:if>
-												
-												<td><!-- <button type="button"
-														style="width: 45%; float: left;"
-														class="btn btn-block btn-danger btn-xs">删除</button> -->
-													<button type="button"  edit-id="${testTaskDetail.id }"
-														style="width: 80%;margin: 0 auto;"
-														class="btn btn-block btn-primary btn-xs"><a style="color:#fff" href="/strong/testresult/getByTaskId?taskId=${testTaskDetail.id }">查看结果</a></button></td>
-<!-- style="width: 80%; margin-top: 0px;" -->
-											</tr>
-										</c:forEach>
-
-										<!-- 		<tr role="row" class="odd">
-											<td class="sorting_1">Gecko</td>
-											<td>Firefox 1.0</td>
-											<td>Win 98+ / OSX.2+</td>
-											<td>1.7</td>
-											<td>A</td>
-										</tr> -->
-
-									</tbody>
-									<!-- 	<tfoot>
-										<tr>
-											<th rowspan="1" colspan="1">Rendering engine</th>
-											<th rowspan="1" colspan="1">Browser</th>
-											<th rowspan="1" colspan="1">Platform(s)</th>
-											<th rowspan="1" colspan="1">Engine version</th>
-											<th rowspan="1" colspan="1">CSS grade</th>
-										</tr>
-									</tfoot> -->
-								</table>
-							</div>
-						</div>
-						<div class="row">
-							<div class="col-sm-5">
-								<div class="dataTables_info" id="example1_info" role="status"
-									aria-live="polite">Showing 1 to 10 of 57 entries</div>
-							</div>
-							<div class="col-sm-7">
-								<div class="dataTables_paginate paging_simple_numbers"
-									id="example1_paginate">
-									<ul class="pagination">
-										<c:if test="${page.hasPreviousPage }">
-											<li class="paginate_button" id="example1_previous"><a
-												href="/strong/testtask/list?page=1" aria-controls="example1"
-												data-dt-idx="0" tabindex="0">首页</a></li>
-
-											<li class="paginate_button previous" id="example1_previous"><a
-												href="/strong/testtask/list?page=${page.pageNum-1 }"
-												aria-controls="example1" data-dt-idx="0" tabindex="0"><span
-													aria-hidden="true">&laquo;</span></a></li>
-										</c:if>
-										<c:if test="${!page.hasPreviousPage }">
-											<li class="paginate_button disabled" id="example1_previous"><a
-												href="#" aria-controls="example1" data-dt-idx="0"
-												tabindex="0">首页</a></li>
-
-											<li class="paginate_button previous disabled"
-												id="example1_previous"><a href="#"
-												aria-controls="example1" data-dt-idx="0" tabindex="0"> <span
-													aria-hidden="true">&laquo;</span></a></li>
-										</c:if>
-
-										<%--  begin="${page.pageNum >= 3 ? page.pageNum -4 : 0 }" end="${page.pageNum <= 7 ? page.pages - 1 : page.pageNum + 4 }" --%>
-										<c:forEach items="${page.navigatepageNums }" var="page_num">
-
-											<c:if test="${page_num==page.pageNum }">
-												<li class="paginate_button active"><a
-													href="/strong/testtask/list?page=${page_num }"
-													aria-controls="example1" data-dt-idx="1" tabindex="0">${page_num }</a></li>
-											</c:if>
-
-											<c:if test="${page_num != page.pageNum }">
-												<li class="paginate_button "><a
-													href="/strong/testtask/list?page=${page_num }"
-													aria-controls="example1" data-dt-idx="2" tabindex="0">${page_num }</a></li>
-											</c:if>
-										</c:forEach>
-										<c:if test="${page.hasNextPage }">
-											<li class="paginate_button next" id="example1_next"><a
-												href="/strong/testtask/list?page=${page.pageNum + 1}"
-												aria-controls="example1" data-dt-idx="7" tabindex="0"><span
-													aria-hidden="true">&raquo;</span></a></li>
-											<li class="paginate_button next" id="example1_next"><a
-												href="/strong/testtask/list?page=${page.pages }"
-												aria-controls="example1" data-dt-idx="7" tabindex="0">末页</a></li>
-										</c:if>
-										<c:if test="${!page.hasNextPage }">
-											<li class="paginate_button next disabled" id="example1_next"><a
-												href="#" aria-controls="example1" data-dt-idx="7"
-												tabindex="0"><span aria-hidden="true">&raquo;</span></a></li>
-											<li class="paginate_button next disabled" id="example1_next"><a
-												href="#" aria-controls="example1" data-dt-idx="7"
-												tabindex="0">末页</a></li>
-										</c:if>
-									</ul>
-								</div>
-							</div>
-						</div>
+						
+					</c:if>
 					</div>
+					
 				</div>
 				<!-- /.box-body -->
 			</div>
 			<!-- /.box -->
+			<div class="col-md-9">
+			<p>
+					<b>业务线：</b>${taskdetail.scheme.businessLine }</p>
+				<p>
+					<b>测试页面：</b>${taskdetail.scheme.pageName }</p>
+				<p>
+					<b id="scheme" schemeval="${taskdetail.scheme.schemeUrl }">路由配置：</b>${taskdetail.scheme.schemeUrl }</p>
+				<p>
+					<b>客户端类型：</b>${taskdetail.scheme.clientType }</p>
+				<p>
+					<b>权重配置：</b>${taskdetail.weightConfig.jsonStr }</p>					
 		</div>
+		&nbsp;&nbsp;&nbsp;&nbsp;
+				<c:forEach var="strongresult" items="${strongresultList }">
+							<img style="width: 8%; height: 10%;" alt="i am pic"
+								src="${strongresult.picturePath }">
+							&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+						</c:forEach>
+			</div>
+			
 		<!-- /.col -->
+	<!-- 	<div class="box-body">
+				
+			</div> -->
 	</div>
 
+	<div>
+		<div class="nav-tabs-custom">
+            <ul class="nav nav-tabs">
+            <c:forEach var="strongresult2" items="${strongresultList }">
+            	<c:if test="${strongresult2.crashDetail != null }">
+            		<li data-id="${strongresult2.id }"><a href="#crash_${strongresult2.id }" data-toggle="tab">Crash ${strongresult2.id }</a></li>
+            	</c:if>
+            	
+            </c:forEach>
+             <!--  <li class=""><a href="#tab_1" data-toggle="tab">Tab 1</a></li>
+              <li><a href="#tab_2" data-toggle="tab">Tab 2</a></li>
+              <li><a href="#tab_3" data-toggle="tab">Tab 3</a></li> -->
+              <!-- <li class="dropdown">
+                <a class="dropdown-toggle" data-toggle="dropdown" href="#">
+                  Dropdown <span class="caret"></span>
+                </a>
+                <ul class="dropdown-menu">
+                  <li role="presentation"><a role="menuitem" tabindex="-1" href="#">Action</a></li>
+                  <li role="presentation"><a role="menuitem" tabindex="-1" href="#">Another action</a></li>
+                  <li role="presentation"><a role="menuitem" tabindex="-1" href="#">Something else here</a></li>
+                  <li role="presentation" class="divider"></li>
+                  <li role="presentation"><a role="menuitem" tabindex="-1" href="#">Separated link</a></li>
+                </ul>
+              </li> -->
+              <li class="pull-right"><a href="#" class="text-muted"><i class="fa fa-gear"></i></a></li>
+            </ul>
+            <div class="tab-content">
+            <c:forEach var="strongresult" items="${strongresultList }">
+            	<c:if test="${strongresult.crashDetail != null }">
+            		<div detail-id="${strongresult.id}" class="tab-pane" id="crash_${strongresult.id}">
+            	<div class="row">
+            	<div class="col-sm-2">
+                <b>crash detail:</b></div>
+                <div class="col-sm-4 ">
+                <button type="button" id="auto-playback" style="width:30%"  class="btn  btn-flat  btn-success btn-sm">自动回放</button>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                 <button type="button" id="playback" style="width:35%" class="btn  btn-flat  btn-primary btn-sm"><i class="fa fa-fw fa-play"></i>半自动回放</button></div>
+                </div>	
+                
+                <pre>${strongresult.crashDetail }</pre>
+                </div>
+            	</c:if>
+            	
+            </c:forEach>
+             <%--  <div class="tab-pane" id="tab_1">
+                <b>How to use:</b>
+
+                <p>Exactly like the original bootstrap tabs except you should use
+                  the custom wrapper <code>.nav-tabs-custom</code> to achieve this style.</p>                
+              </div>
+              <!-- /.tab-pane -->
+              <div class="tab-pane" id="tab_2">
+                The European languages are members of the same family. 
+              </div>
+              <!-- /.tab-pane -->
+              <div class="tab-pane" id="tab_3">
+                Lorem Ipsum is simply dummy text of the printing and typesetting industry.
+              </div> --%>
+              <!-- /.tab-pane -->
+            </div>
+            <!-- /.tab-content -->
+          </div>
+	</div>
+
+
+	</section>
+
+
 	<jsp:include page="../../footer.jsp"></jsp:include>
-
-
 </body>
 <script type="text/javascript">
 	$(function() {
@@ -418,7 +362,6 @@ AdminLTE App
 		$("#getRecords").click(function() {
 			to_page(1);
 		})
-
 		/* 	$("#search_testtask").click(function() {
 				$.ajax({
 					url : "/strong/testtask/search",
@@ -430,26 +373,87 @@ AdminLTE App
 				})
 			}) */
 
+		$("#auto-playback").click(function(){
+			$(this).attr("disabled","disabled");
+			$(this).val("正在回放");
+			var resultId = $(".tab-pane.active").attr("detail-id");
+			var schemeUrl = $("#scheme").attr("schemeval");
+			$.ajax({
+				url:"/strong/testresult/autoplayback",
+				data:"resultId=" + resultId + "&schemeUrl=" + schemeUrl,
+				type:"post",
+				success:function(result){
+					$("#auto-playback").removeAttr("disabled");
+					if(result.code == 1){
+						alert("回放成功");
+					}else{
+						alert(result.map.errorMsg);
+					}
+					
+				}
+			})	
+		});
+		
+		
+		$("#playback").click(function(){
+			var playstatus = $(this).find("i").hasClass("fa-play");
+			if(playstatus){
+				var resultId = $(".tab-pane.active").attr("detail-id");
+				var schemeUrl = $("#scheme").attr("schemeval");
+				$.ajax({
+					url:"/strong/testresult/playback",
+					data:"resultId=" + resultId + "&schemeUrl=" + schemeUrl,
+					type:"post",
+					success:function(result){
+						if(result.code == 1){
+							$(".fa-play").addClass("fa-pause").removeClass("fa-play");
+							
+						}else{
+							alert(result.map.errorMsg);
+						}
+						
+					}
+				})
+			}else{
+				
+				$.ajax({
+					url:"/strong/testresult/stopplayback",
+					type:"get",
+					success:function(result){
+						if(result.code == 1){
+							$(".fa-pause").addClass("fa-play").removeClass("fa-pause");
+							
+						}else{
+							alert(result.map.errorMsg);
+						}
+						
+					}
+				})
+			}
+			
+		});
+		
 		$("button.btn-danger").click(function() {
 			delete_testtask(this);
 		})
 
-	/* 	$("[edit-id]").click(function() {
+		$("[edit-id]").click(function() {
 			var id = $(this).attr("edit-id");
-			$.ajax({
-				url:"/strong/testresult/getByTaskId?taskId=" + id,
-				type:'get'
-			})
-			
-		}); */
-
-		$("#testtask_add_modal_btn").click(function() {
-			getSchemes("#testtask_add_modal select[name='schemeId']");
-			getWeightConfigs("#testtask_add_modal select[name='weightconfigId']");
-			$("#testtask_add_modal").modal({
+			getScheme(id);
+			$("#testtask_update_modal").modal({
 				backdrop : "static"
 			});
 		});
+
+		$("#testtask_add_modal_btn")
+				.click(
+						function() {
+							getSchemes("#testtask_add_modal select[name='schemeId']");
+							getWeightConfigs("#testtask_add_modal select[name='weightconfigId']");
+							$("#testtask_add_modal").modal({
+								backdrop : "static"
+							});
+						});
 
 		$("#testtask_save_btn")
 				.click(
@@ -487,10 +491,11 @@ AdminLTE App
 			success : function(result) {
 				if (result.code == 1) {
 					//{"code":1,"msg":"处理成功","map":{"schemes":[{"id":1,"businessLine":"机票",
-				//"pageName":"订单详情","clientType":"Android","schemeUrl":"elong://flight?ordierid=28377347834"}]}}
+					//"pageName":"订单详情","clientType":"Android","schemeUrl":"elong://flight?ordierid=28377347834"}]}}
 					$.each(result.map.schemes, function() {
 						var option = $("<option></option>").append(
-								this.businessLine + " "+ this.pageName).attr("value", this.id);
+								this.businessLine + " " + this.pageName).attr(
+								"value", this.id);
 						$(ele).append(option);
 					})
 				}
@@ -505,7 +510,7 @@ AdminLTE App
 			success : function(result) {
 				if (result.code == 1) {
 					//{"code":1,"msg":"处理成功","map":{"wjList":
-						//[{"id":1,"weightJsonStr":"{\"changeType\":10,\"changeValue\":40,\"del\":20,\"emptyValue\":30}"}]}}
+					//[{"id":1,"weightJsonStr":"{\"changeType\":10,\"changeValue\":40,\"del\":20,\"emptyValue\":30}"}]}}
 					$.each(result.map.wjList, function() {
 						var option = $("<option></option>").append(
 								this.weightJsonStr).attr("value", this.id);
@@ -516,7 +521,6 @@ AdminLTE App
 		})
 	}
 
-	
 	function show_validate_msg(ele, status, msg) {
 		$(ele).parent().removeClass("has-success has-error");
 		$(ele).next("span").text("");
@@ -682,6 +686,48 @@ AdminLTE App
 
 		$(".pagination").append(nextPage).append(lastPage);
 
+	}
+	
+
+	$(function(){
+		console.log('this sad',$('#carousel-example-generic').length)
+		setTimeout( function(){
+			$('#carousel-example-generic').carousel('pause');
+		},100);
+		kkk();
+		//当轮播完成幻灯片过渡效果时触发该事件。
+		$('#carousel-example-generic').on('slid.bs.carousel', function () {
+		    // 执行一些动作...
+			kkk();
+		})
+		
+		
+		
+		$("li[data-id]").click(function(){
+			var dataid = $(this).attr("data-id");
+			
+			var i = $("img[data-id='" + dataid + "']").attr("index");
+			/* alert(i); */
+			$('#carousel-example-generic').carousel(i-0);
+		})
+	})
+	
+	
+	
+	
+	
+	function kkk(){
+		
+		var reportid = $("div.item.active img").attr("data-id");
+		$(".box-title:eq(1)").html(reportid);
+		selectCrash(reportid);
+	}
+	
+	function selectCrash(id){
+		$("li[data-id]").removeClass("active");
+		$("li[data-id='"+ id +"']").addClass("active");
+		$("div.tab-pane").removeClass("active");
+		$("div[detail-id='"+ id +"']").addClass("active");
 	}
 </script>
 </html>

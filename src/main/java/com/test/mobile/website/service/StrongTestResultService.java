@@ -1,5 +1,7 @@
 package com.test.mobile.website.service;
 
+import java.util.List;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -17,4 +19,17 @@ public class StrongTestResultService {
 		
 		return strongTestResultMapper.add(strongResult);
 	}
+	
+	
+	
+	public List<StrongResult> getStrongResult(Integer taskId){
+		
+		return strongTestResultMapper.getStrongResultByTaskId(taskId);
+	}
+	
+	public Integer getMaxId(){
+		
+		return strongTestResultMapper.getMaxId();
+	}
+	
 }

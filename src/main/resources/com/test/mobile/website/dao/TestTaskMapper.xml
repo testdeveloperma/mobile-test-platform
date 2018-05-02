@@ -6,6 +6,7 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 
 	<resultMap type="testTaskDetail" id="resultTaskDetailMap">
 		<result property="id" column="id"/>
+		<result property="taskName" column="task_name"/>
 		<result property="times" column="times"/>
 		<result property="createTime" column="create_time"/>
 		<result property="state" column="state"/>
@@ -43,8 +44,8 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 	<insert id="add" useGeneratedKeys="true" keyProperty="id"
 		parameterType="com.test.mobile.website.bean.TestTask">
 		insert into
-		test_task(scheme_id,weightconfig_id,times,create_time,state)
-		values(#{schemeId},#{weightconfigId},#{times},now(),#{state})
+		test_task(task_name,scheme_id,weightconfig_id,times,create_time,state)
+		values(#{taskName},#{schemeId},#{weightconfigId},#{times},now(),#{state})
 	</insert>
 
 

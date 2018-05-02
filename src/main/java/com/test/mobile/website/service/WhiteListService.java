@@ -10,6 +10,7 @@ import org.springframework.format.datetime.DateFormatter;
 import org.springframework.stereotype.Service;
 
 import com.github.pagehelper.PageHelper;
+import com.test.mobile.redis.WhiteListRedis;
 import com.test.mobile.website.bean.Msg;
 import com.test.mobile.website.bean.WhiteList;
 import com.test.mobile.website.dao.WhiteListMapper;
@@ -28,11 +29,16 @@ public class WhiteListService {
 
 	}
 
+	public void updateCache(){
+		List<String> whisteList = getPath();
+		WhiteListRedis.getInstance().addWhiteList(whisteList );
+	}
+	
+	
 	public List<WhiteList> getAll(Integer page) {
 		PageHelper.startPage(page, 10);
 		List<WhiteList> whitelists = whiteListMapper.getAll();
 		
-		DateFormatter dateFormatter = new DateFormatter("");
 		SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
 		
 		for (WhiteList whiteList : whitelists) {

@@ -30,6 +30,7 @@ json_str varchar(255)
 
 CREATE TABLE test_task(
 id INT(11) PRIMARY KEY AUTO_INCREMENT,
+task_name varchar(255) comment '任务名称',
 scheme_id INT(11),
 weightconfig_id INT(11),
 times INT(11),

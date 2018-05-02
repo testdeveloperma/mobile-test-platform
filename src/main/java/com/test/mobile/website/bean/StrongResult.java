@@ -6,7 +6,7 @@ public class StrongResult {
 	private Integer id;
 	
 	private Integer taskId;
-	
+		
 	private String picturePath;
 	
 	private String crashPath;
@@ -52,7 +52,12 @@ public class StrongResult {
 	public void setCrashDetail(String crashDetail) {
 		this.crashDetail = crashDetail;
 	}
-	
+
+	@Override
+	public String toString() {
+		return "StrongResult [id=" + id + ", taskId=" + taskId + ", picturePath=" + picturePath + ", crashPath="
+				+ crashPath + ", crashDetail=" + crashDetail + "]";
+	}	
 	
 	
 	

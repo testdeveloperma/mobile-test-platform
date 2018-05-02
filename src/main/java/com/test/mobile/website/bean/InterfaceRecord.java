@@ -4,20 +4,22 @@ public class InterfaceRecord {
 
 	private String id;	
 	
-	private String url; // ÇëÇópath,°üÀ¨getÇëÇó²ÎÊý£¬²»°üº¬Ä¿±êhost
+	private String url; // ï¿½ï¿½ï¿½ï¿½path,ï¿½ï¿½ï¿½ï¿½getï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Ä¿ï¿½ï¿½host
 
-	private String method; // ÇëÇó·½Ê½£¬GET or POST
+	private String method; // ï¿½ï¿½ï¿½ï¿½Ê½ï¿½ï¿½GET or POST
 
-	private String requestHeader; // ÇëÇóheader
+	private String requestHeader; // ï¿½ï¿½ï¿½ï¿½header
 
-	private String requestParam; // ÇëÇó²ÎÊý
+	private String requestParam; // ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½
 	
-	private String responseResult;  // ·µ»Ø½á¹û
+	private String responseResult;  // ï¿½ï¿½ï¿½Ø½ï¿½ï¿½
 	
 	private String responseHeader;  
 	
-	private int responseCode;  // ÏìÓ¦×´Ì¬Âë
+	private int responseCode;  // ï¿½ï¿½Ó¦×´Ì¬ï¿½ï¿½
 
+	private Integer sresultId;  //æŠ¥å‘Šid
+	
 	public String getId() {
 		return id;
 	}
@@ -80,6 +82,14 @@ public class InterfaceRecord {
 
 	public void setResponseCode(int responseCode) {
 		this.responseCode = responseCode;
+	}
+
+	public Integer getSresultId() {
+		return sresultId;
+	}
+
+	public void setSresultId(Integer sresultId) {
+		this.sresultId = sresultId;
 	}
 	
 	

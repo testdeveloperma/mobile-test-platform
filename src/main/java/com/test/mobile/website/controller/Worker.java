@@ -64,7 +64,7 @@ public class Worker {
 					
 				} catch (Exception e) {
 					// TODO: handle exception
-					testTask.setState(StateEnum.waiting);
+					testTask.setState(StateEnum.end);
 					testTaskService.updateState(testTask);
 					e.printStackTrace();
 				}

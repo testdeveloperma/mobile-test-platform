@@ -17,17 +17,19 @@ import org.springframework.web.servlet.ModelAndView;
 
 import com.alibaba.fastjson.JSONObject;
 import com.github.pagehelper.PageInfo;
-import com.test.mobile.util.mAndroidUtil;
+import com.test.mobile.redis.SingleValueRedis;
 import com.test.mobile.website.bean.Msg;
 import com.test.mobile.website.bean.Scheme;
 import com.test.mobile.website.bean.SchemeSearch;
 import com.test.mobile.website.bean.StateEnum;
+import com.test.mobile.website.bean.StrongResult;
 import com.test.mobile.website.bean.TestTask;
 import com.test.mobile.website.bean.TestTaskDetail;
 import com.test.mobile.website.bean.WeightConfig;
 import com.test.mobile.website.bean.WeightJSON;
 import com.test.mobile.website.bean.WhiteList;
 import com.test.mobile.website.service.StrongService;
+import com.test.mobile.website.service.StrongTestResultService;
 import com.test.mobile.website.service.TestTaskService;
 import com.test.mobile.website.service.WeightConfigService;
 import com.test.mobile.website.service.WhiteListService;
@@ -48,14 +50,57 @@ public class StrongController {
 	@Autowired
 	TestTaskService testTaskService;
 	
+	@Autowired
+	StrongTestResultService strongTestResultService;
+	
+	@RequestMapping("submitCrashInfo")
+	public Msg submitCrashInfo(String crashInfo){
+		 SingleValueRedis.getInstance().addCrashInfo(crashInfo);
+		return Msg.success();
+	}
+	
+	@ResponseBody
+	@RequestMapping("testresult/autoplayback")
+	public Msg autoplayback(Integer resultId,String schemeUrl){
+		String result = testTaskService.playbackCrash(schemeUrl, resultId);
+		if(result.equals("fail"))
+			return Msg.fail().add("errorMsg", "没有测试设备");
+		return Msg.success();
+	}
+	
+	@ResponseBody
+	@RequestMapping("testresult/playback")
+	public Msg playback(Integer resultId){
+		testTaskService.playbackCrash(resultId);
+		return Msg.success();
+	}
+	
+	@ResponseBody
+	@RequestMapping("testresult/stopplayback")
+	public Msg stopPlayback(){
+		testTaskService.stopPlayback();
+		return Msg.success();
+	}
+	
+	
+	
+	
+	
+	@RequestMapping("testresult/getByTaskId")
+	public String getTestResultByTaskId(Map<String, Object> map,Integer taskId){
+		TestTaskDetail testtaskDetail = testTaskService.getTestTaskById(taskId);
+		List<StrongResult> strongResult = strongTestResultService.getStrongResult(taskId);
+		map.put("taskdetail", testtaskDetail);
+		map.put("strongresultList", strongResult);
+		
+		return "strongtestresult";
+	}
+	
 	
 	@ResponseBody
 	@RequestMapping("testtask/run")
 	public Msg executeTest(Integer id){
-		
-		
-		
-		
+			
 		return Msg.success();
 	}
 	
@@ -145,73 +190,11 @@ public class StrongController {
 	
 	
 	
-	@RequestMapping("/whitelist/list")
-	public String getWhiteList(Map<String,Object> map,@RequestParam(required=false,defaultValue="1",name="page") Integer page){
-		List<WhiteList> whitelists = whiteListService.getAll(page);
-		System.out.println(whitelists);
-		PageInfo<WhiteList> p = new PageInfo<>(whitelists);
-		
-		map.put("whitelists", whitelists);
-		map.put("page", p);
-		
-		return "whitelist";
-	}
 	
-	@ResponseBody
-	@RequestMapping("whitelist/add")
-	public Msg addWhitelist(@Validated WhiteList whiteList,BindingResult result){
-		 if(result.hasErrors()){
-			 Map<String, String> map = new HashMap<>();
-			 
-			 List<FieldError> errors = result.getFieldErrors();
-			 for (FieldError fieldError : errors) {
-				System.out.println(fieldError.getField() + ":" + fieldError.getDefaultMessage());
-				map.put(fieldError.getField(), fieldError.getDefaultMessage());
-			}
-			 return Msg.fail().add("errorMsg", map);
-		 }else{
-			 whiteListService.addWhiteList(whiteList);
-				
-				int id = whiteList.getId();
-				
-				System.out.println("id:" + id);
-				if(id >= 1)
-					return Msg.success();
-				else
-					return Msg.fail();
-		 }
-		
-	}
-	
-	@ResponseBody
-	@RequestMapping("/whitelist/getWhiteListById")
-	public Msg getWhiteListById(@RequestParam(name="id") Integer id){
-		WhiteList whiteList = whiteListService.getWhiteListById(id);
-		
-		if(whiteList == null)
-			return Msg.fail();
-		else
-			return Msg.success().add("whitelist", whiteList);
-			
-	}
-	
-	@ResponseBody
-	@RequestMapping("/whitelist/deleteWhiteListById")
-	public Msg deleteWhiteListById(@RequestParam(name="id") Integer id){
-	
-		Integer line = whiteListService.deleteWhiteListById(id);
-		if(line < 1){
-			return Msg.fail();
-		}else{
-			return Msg.success();
-		}		
-	}
-	 
 	
 	@ResponseBody
 	@RequestMapping("scheme/update")
 	public Msg updateScheme(Scheme scheme){
-		System.out.println(scheme.toString());
 		Integer line = strongService.updateScheme(scheme);
 		
 		if(line == 1)
@@ -229,7 +212,6 @@ public class StrongController {
 			 
 			 List<FieldError> errors = result.getFieldErrors();
 			 for (FieldError fieldError : errors) {
-				System.out.println(fieldError.getField() + ":" + fieldError.getDefaultMessage());
 				map.put(fieldError.getField(), fieldError.getDefaultMessage());
 			}
 			 return Msg.fail().add("errorMsg", map);
@@ -238,7 +220,6 @@ public class StrongController {
 				
 				int id = scheme.getId();
 				
-				System.out.println("id:" + id);
 				if(id >= 1)
 					return Msg.success();
 				else
@@ -255,7 +236,6 @@ public class StrongController {
 			return Msg.fail();
 		else{
 			int deleteById = strongService.deleteById(id);
-			System.out.println("deleteById:" + deleteById);
 			if(deleteById >= 1)
 				return Msg.success();
 			else
@@ -283,7 +263,6 @@ public class StrongController {
 	
 	@RequestMapping("/scheme/list")
 	public ModelAndView getScheme(SchemeSearch search){
-		System.out.println(search);
 		ModelAndView mv = new ModelAndView("schemelist");
 		int page = 0;
 		if(search.getPage() == null)
@@ -292,7 +271,6 @@ public class StrongController {
 			page = search.getPage();
 		List<Scheme> schemeList = strongService.getScheme(page,search);
 		PageInfo<Scheme> p = new PageInfo<>(schemeList);
-		System.out.println(p);
 		mv.addObject("schemeList",schemeList);
 		mv.addObject("page", p);
 		return mv;

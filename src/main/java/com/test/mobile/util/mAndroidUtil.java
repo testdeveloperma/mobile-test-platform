@@ -7,7 +7,47 @@ import java.net.URL;
 import java.util.Properties;
 
 
+
 public class mAndroidUtil {
+
+	public static String agentPath = "";
+	public static String imgPath = "";
+	public static String crashPath = "";
+	public static InitalVariable iv = new InitalVariable();
+	
+	
+	/**
+	 * 使用adb自动获取手机的设备号
+	 * 
+	 * @return
+	 * @throws InterruptedException
+	 */
+	public static String autoGetDeviceName(){
+		String[] deviceName = null;
+		Runtime run = Runtime.getRuntime();
+		try {
+			String cmd = "adb devices";
+			BufferedReader br = mAndroidUtil.getAdbShellResult(cmd);
+			
+			String line = null;
+			while ((line = br.readLine()) != null) {
+				System.out.println(line.toString());
+				if (line.endsWith("device")) {
+					deviceName = line.split("	");
+				}
+			}
+			br.close();
+			//process.waitFor();
+		} catch (IOException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		if (deviceName != null){
+			System.out.println(deviceName[0]);
+			return deviceName[0];
+		}
+		return null;
+	}
 
 	
 	
@@ -18,14 +58,11 @@ public class mAndroidUtil {
 	 *            保存的图片名称
 	 */
 	public static void screencap(String picturename) {
-		URL classUrl = Thread.currentThread().getContextClassLoader().getResource("");
-		String agentPath = classUrl.getPath();
 	//	agentPath.replaceAll("", replacement)
 /*		String cmd = "sh " + agentPath + "screencap.sh " + picturename; // shell
 */		//WEB-INF/classes/
-		agentPath = agentPath.replaceAll("^/", "");
-		String replaceAll = agentPath.replaceAll("WEB-INF/classes/", "img");
-		String cmd ="cmd /c " + agentPath + "screencap.bat " + picturename + " " + replaceAll ; // 批处理
+		
+		String cmd ="cmd /c " + agentPath + "screencap.bat " + picturename + " " + imgPath ; // 批处理
 		try {
 			
 			/*BufferedReader adbShellResult = getAdbShellResult("dir");
@@ -37,7 +74,6 @@ public class mAndroidUtil {
 			adbShellResult.close();*/
 			
 			System.out.println(cmd);
-			/*cmd ="cmd /c dir";*/
 			BufferedReader adbShellResult = getAdbShellResult(cmd);
 			String line = null;
 			while ((line = adbShellResult.readLine()) != null) {
@@ -54,8 +90,12 @@ public class mAndroidUtil {
 	}
 
 	
+	
+	
 	public static void main(String[] args) {
-		URL classUrl = Thread.currentThread().getContextClassLoader().getResource("");
+		System.out.println("agentPath:" + agentPath);
+		System.out.println("imgPath:" + imgPath);
+		/*URL classUrl = Thread.currentThread().getContextClassLoader().getResource("");
 		String agentPath = classUrl.getPath();
 		System.out.println(agentPath);
 		agentPath = agentPath.replaceAll("^/", "");
@@ -73,7 +113,7 @@ public class mAndroidUtil {
 		} catch (IOException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
-		}
+		}*/
 	}
 	
 		

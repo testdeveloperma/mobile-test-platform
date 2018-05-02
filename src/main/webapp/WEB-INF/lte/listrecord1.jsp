@@ -123,11 +123,11 @@ AdminLTE App
 												<td>${record.id }</td>
 												<td>${record.url }</td>
 												<td>${record.method }</td>
-												<td>${record.requestParam }</td>
+												<td><%-- ${record.requestParam } --%>0</td>
 												<td>${record.requestHeader }</td>
-												<td>${record.responseResult }</td>
+												<td><%-- ${record.responseResult } --%>1</td>
 												<td>${record.responseCode }</td>
-												<td>${record.responseHeader }</td>
+												<td><%-- ${record.responseHeader } --%>2</td>
 												<td><button type="button"
 														style="width: 45%; float: left;"
 														class="btn btn-block btn-danger btn-xs">删除</button>
@@ -168,38 +168,62 @@ AdminLTE App
 								<div class="dataTables_paginate paging_simple_numbers"
 									id="example1_paginate">
 									<ul class="pagination">
-									<c:if test="${page.hasPreviousPage }">
-										<li class="paginate_button previous disabled"
-											id="example1_previous"><a href="/strong/test?page=1"
-											aria-controls="example1" data-dt-idx="0" tabindex="0">首页</a></li>
-											
-											<li class="paginate_button previous disabled"
-											id="example1_previous"><a href="/strong/test?page=${page.pageNum-1 }"
-											aria-controls="example1" data-dt-idx="0" tabindex="0">上一页</a></li>
-									</c:if>
-									<c:forEach items="${page.navigatepageNums }" var="page_num">
-										
-										<c:if test="${page_num==page.pageNum }">
-											<li class="paginate_button active"><a href="/strong/test?page=${page_num }"
-											aria-controls="example1" data-dt-idx="1" tabindex="0">${page_num }</a></li>
+										<c:if test="${page.hasPreviousPage }">
+											<li class="paginate_button" id="example1_previous"><a
+												href="/strong/httpdata/list?page=1" aria-controls="example1"
+												data-dt-idx="0" tabindex="0">首页</a></li>
+
+											<li class="paginate_button previous" id="example1_previous"><a
+												href="/strong/httpdata/list?page=${page.pageNum-1 }"
+												aria-controls="example1" data-dt-idx="0" tabindex="0"><span aria-hidden="true">&laquo;</span></a></li>
+										</c:if>
+										<c:if test="${!page.hasPreviousPage }">
+											<li class="paginate_button disabled" id="example1_previous"><a
+												href="#" aria-controls="example1"
+												data-dt-idx="0" tabindex="0">首页</a></li>
+
+											<li class="paginate_button previous disabled" id="example1_previous"><a
+												href="#"
+												aria-controls="example1" data-dt-idx="0" tabindex="0"> <span aria-hidden="true">&laquo;</span></a></li>
 										</c:if>
 										
-										<c:if test="${page_num != page.pageNum }">
-											<li class="paginate_button "><a href="/strong/test?page=${page_num }"
-											aria-controls="example1" data-dt-idx="2" tabindex="0">${page_num }</a></li>
+										<%--  begin="${page.pageNum >= 3 ? page.pageNum -4 : 0 }" end="${page.pageNum <= 7 ? page.pages - 1 : page.pageNum + 4 }" --%>
+										<c:forEach items="${page.navigatepageNums }" var="page_num" >
+
+											<c:if test="${page_num==page.pageNum }">
+												<li class="paginate_button active"><a
+													href="/strong/httpdata/list?page=${page_num }"
+													aria-controls="example1" data-dt-idx="1" tabindex="0">${page_num }</a></li>
+											</c:if>
+
+											<c:if test="${page_num != page.pageNum }">
+												<li class="paginate_button "><a
+													href="/strong/httpdata/list?page=${page_num }"
+													aria-controls="example1" data-dt-idx="2" tabindex="0">${page_num }</a></li>
+											</c:if>
+										</c:forEach>
+										<c:if test="${page.hasNextPage }">
+											<li class="paginate_button next" id="example1_next"><a
+												href="/strong/httpdata/list?page=${page.pageNum + 1}"
+												aria-controls="example1" data-dt-idx="7" tabindex="0"><span aria-hidden="true">&raquo;</span></a></li>
+											<li class="paginate_button next" id="example1_next"><a
+												href="/strong/httpdata/list?page=${page.pages }"
+												aria-controls="example1" data-dt-idx="7" tabindex="0">末页</a></li>
 										</c:if>
-									</c:forEach>
-									<c:if test="${page.hasNextPage }">
-									<li class="paginate_button next" id="example1_next"><a
-											href="/strong/test?page=${page.pageNum }" aria-controls="example1" data-dt-idx="7"
-											tabindex="0">下一页</a></li>
-										<li class="paginate_button next" id="example1_next"><a
-											href="/strong/test?page=${page.pages }" aria-controls="example1" data-dt-idx="7"
-											tabindex="0">末页</a></li>
-									</c:if>									
+										<c:if test="${!page.hasNextPage }">
+											<li class="paginate_button next disabled" id="example1_next"><a
+												href="#"
+												aria-controls="example1" data-dt-idx="7" tabindex="0"><span aria-hidden="true">&raquo;</span></a></li>
+											<li class="paginate_button next disabled" id="example1_next"><a
+												href="#"
+												aria-controls="example1" data-dt-idx="7" tabindex="0">末页</a></li>
+										</c:if>
 									</ul>
 								</div>
 							</div>
+						
+						
+						
 						</div>
 					</div>
 				</div>
@@ -216,7 +240,9 @@ AdminLTE App
 </body>
 <script type="text/javascript">
 	$(function() {
-		
+		$("li:not(.paginate_button)").removeClass("active");
+		$(".treeview-menu").css("display","block");
+		$("[href='/strong/httpdata/list']").parent().addClass("active");
 		
 		$("#getRecords").click(function(){
 			to_page(1);

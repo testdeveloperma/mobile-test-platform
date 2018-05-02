@@ -16,7 +16,7 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 	</select> -->
 	
 	<select id="getRecord"  resultType="com.test.mobile.website.bean.InterfaceRecord">
-		select id,url,method,request_param,request_header,response_result,response_code,response_header from http_data order by id desc
+		select id,url,method,request_param,request_header,response_result,response_code,response_header,sresult_id from http_data order by id desc
 	</select>
 	
 	<select id="getInterfaceRecordById"  resultType="com.test.mobile.website.bean.InterfaceRecord" parameterType="java.lang.Integer">

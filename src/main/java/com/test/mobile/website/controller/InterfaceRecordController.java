@@ -23,7 +23,7 @@ public class InterfaceRecordController {
 	@Autowired
 	InterfaceRecordService interfaceRecordService;
 	
-	@RequestMapping("strong/test")
+	@RequestMapping("/strong/httpdata/list")
 	public String getInterfaceRecord(Map<String,Object> map,@RequestParam(defaultValue="1",required=false,name="page") Integer page){
 		System.out.println("收到请求page:" + page);
 		List<InterfaceRecord> records = interfaceRecordService.getRecord(page);

@@ -6,6 +6,8 @@ public class TestTaskDetail {
 
 	private Integer id;
 	
+	private String taskName;
+	
 	private Scheme scheme;
 	
 	private WeightConfig weightConfig;
@@ -72,6 +74,14 @@ public class TestTaskDetail {
 
 	public void setState(StateEnum state) {
 		this.state = state;
+	}
+
+	public String getTaskName() {
+		return taskName;
+	}
+
+	public void setTaskName(String taskName) {
+		this.taskName = taskName;
 	}
 
 	
